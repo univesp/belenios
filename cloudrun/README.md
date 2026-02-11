@@ -55,4 +55,7 @@ After updating DNS, wait 15-60 minutes for Google to provision the SSL certifica
 
 -   **502 Bad Gateway**: Check Cloud Run logs. The application might be crashing or not listening on port 8080.
 -   **Certificate Staying in PROVISIONING**: Verify your DNS record matches the IP address exactly. Google validates ownership via DNS lookup.
--   **Permissions**: Ensure your `gcloud` account has `Cloud Run Admin`, `Compute Load Balancer Admin`, and `Storage Admin` roles.
+-   **Permissions (`artifactregistry.repositories.uploadArtifacts` denied)**:
+    - If image push fails with `denied: Permission 'artifactregistry.repositories.uploadArtifacts' denied`, grant the deploy identity `Artifact Registry Writer` (`roles/artifactregistry.writer`) on the target project/repository.
+    - Keep `Cloud Run Admin` for deployment, and if the workflow also manages load balancer resources, keep the required Compute roles.
+    - If using GitHub Actions, confirm `GCP_SA_KEY` belongs to the same project as `GCP_PROJECT_ID` and that the `gcr.io`-backed Artifact Registry repository exists in that project.
