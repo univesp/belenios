@@ -108,8 +108,7 @@ let sendmail ~recipient ~uuid message =
   with e ->
     Ocsigen_messages.errlog ("SMTP Connection Error: " ^ Printexc.to_string e);
     raise e
-  in
-  ()
+
 
 let send ?internal (msg : message) =
   let@ () =
