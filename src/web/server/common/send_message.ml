@@ -39,7 +39,21 @@ let ensure_tunnel () =
     Ocsigen_messages.errlog "SMTP Tunnel: Port 12525 is already open."
   else
     match Sys.getenv_opt "SSH_PRIVATE_KEY" with
-    | None -> Ocsigen_messages.errlog "SMTP Tunnel: SSH_PRIVATE_KEY not set, cannot start tunnel"
+    | None -> 
+        let home = try Sys.getenv "HOME" with Not_found -> "/home/belenios" in
+        let id_rsa = Filename.concat (Filename.concat home ".ssh") "id_rsa" in
+        if Sys.file_exists id_rsa then (
+             Ocsigen_messages.errlog "SMTP Tunnel: SSH_PRIVATE_KEY env var not set, but found id_rsa file. Using it.";
+             Ocsigen_messages.errlog "SMTP Tunnel: Starting tunnel...";
+             let cmd = [| "ssh"; "-i"; id_rsa; "-o"; "StrictHostKeyChecking=no"; "-o"; "UserKnownHostsFile=/dev/null"; "-f"; "-N"; "-L"; "12525:smtprelay01.prodesp.sp.gov.br:25"; "lucas.teles@tools.univesp.br" |] in
+             let pid = Unix.create_process "ssh" cmd Unix.stdin Unix.stdout Unix.stderr in
+             let _ = Unix.waitpid [] pid in
+             Unix.sleep 1;
+             if is_port_open 12525 then Ocsigen_messages.errlog "SMTP Tunnel: Tunnel established successfully."
+             else Ocsigen_messages.errlog "SMTP Tunnel: Failed to establish tunnel using existing key file."
+        ) else (
+             Ocsigen_messages.errlog "SMTP Tunnel: SSH_PRIVATE_KEY not set and no id_rsa found, cannot start tunnel"
+        )
     | Some key ->
         Ocsigen_messages.errlog "SMTP Tunnel: Starting tunnel...";
         let home = try Sys.getenv "HOME" with Not_found -> "/home/belenios" in
