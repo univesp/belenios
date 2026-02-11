@@ -51,5 +51,5 @@ jobs:
         env_vars: |
           SMTP_RELAY_HOST=127.0.0.1
           SMTP_RELAY_PORT=12525
-          SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_PRIVATE_KEY_B64=${{ secrets.SSH_PRIVATE_KEY_B64 }}
           SSH_USER=lucas.teles

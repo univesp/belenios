@@ -59,5 +59,23 @@ PATH=$BELENIOS_BINDIR:$PATH:/usr/sbin
 
 
 
+# Initialize SSH key if provided (for email relay)
+if [ -n "$SSH_PRIVATE_KEY" ] || [ -n "$SSH_PRIVATE_KEY_B64" ]; then
+    echo "Initializing SSH key..."
+    mkdir -p /home/belenios/.ssh
+    if [ -n "$SSH_PRIVATE_KEY_B64" ]; then
+        echo "$SSH_PRIVATE_KEY_B64" | base64 -d > /home/belenios/.ssh/id_rsa
+    else
+        echo "$SSH_PRIVATE_KEY" > /home/belenios/.ssh/id_rsa
+    fi
+    chmod 600 /home/belenios/.ssh/id_rsa
+    
+    # Add relay host to known_hosts to avoid prompt
+    if [ -n "$SMTP_RELAY_HOST" ]; then
+        ssh-keyscan -p ${SMTP_RELAY_PORT:-22} $SMTP_RELAY_HOST >> /home/belenios/.ssh/known_hosts 2>/dev/null || true
+    fi
+    echo "SSH key initialized."
+fi
+
 echo "Starting server..."
 exec belenios-server -c $BELENIOS_VARDIR/etc/ocsigenserver.conf "$@"
