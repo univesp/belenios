@@ -71,6 +71,16 @@ let ensure_tunnel () =
         if is_port_open 12525 then Ocsigen_messages.errlog "SMTP Tunnel: Tunnel established successfully."
         else Ocsigen_messages.errlog "SMTP Tunnel: Failed to establish tunnel."
 
+let tunnel_initialized = ref false
+
+let ensure_tunnel_once () =
+  if not !tunnel_initialized then (
+    tunnel_initialized := true;
+    ensure_tunnel ()
+  )
+
+let () = ensure_tunnel_once ()
+
 let split_address =
   let open Re in
   let rex = Pcre.regexp "^(.*)@([^@]+)$" in
@@ -100,7 +110,6 @@ let sendmail ~recipient ~uuid message =
         let local, domain = split_address base_address in
         Printf.sprintf "%s+%s%s@%s" local recipient uuid domain
   in
-  ensure_tunnel ();
   Ocsigen_messages.errlog (Printf.sprintf "SMTP: Sending mail via tunnel for %s..." recipient);
   try
     let s = Unix.socket Unix.PF_INET Unix.SOCK_STREAM 0 in
