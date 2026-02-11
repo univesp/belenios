@@ -89,7 +89,7 @@ let sendmail ~recipient ~uuid message =
   ensure_tunnel ();
   Ocsigen_messages.errlog (Printf.sprintf "SMTP: Connecting to tunnel for %s..." recipient);
   try
-    let client = Netsmtp.connect (`Inet_addr (Unix.inet_addr_loopback, 12525)) in
+    let client = new Netsmtp.client (`Inet_addr (Unix.inet_addr_loopback, 12525)) in
     Ocsigen_messages.errlog "SMTP: Connected. Sending mail envelope...";
     try
       Netsmtp.mail client envelope_from;
