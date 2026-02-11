@@ -19,3 +19,4 @@ env.sh
 node_modules
 *.stories.mjs
 scaling.*.json
+gcp-sa-key.json

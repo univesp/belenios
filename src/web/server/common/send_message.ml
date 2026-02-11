@@ -24,10 +24,38 @@ open Belenios
 open Belenios_server_core
 open Belenios_messages
 
-let mailer =
-  match Sys.getenv_opt "BELENIOS_SENDMAIL" with
-  | None -> "/usr/lib/sendmail"
-  | Some x -> x
+let is_port_open port =
+  try
+    let s = Unix.socket Unix.PF_INET Unix.SOCK_STREAM 0 in
+    let addr = Unix.inet_addr_loopback in
+    let sa = Unix.ADDR_INET (addr, port) in
+    Unix.connect s sa;
+    Unix.close s;
+    true
+  with _ -> false
+
+let ensure_tunnel () =
+  if is_port_open 12525 then 
+    Ocsigen_messages.errlog "SMTP Tunnel: Port 12525 is already open."
+  else
+    match Sys.getenv_opt "SSH_PRIVATE_KEY" with
+    | None -> Ocsigen_messages.errlog "SMTP Tunnel: SSH_PRIVATE_KEY not set, cannot start tunnel"
+    | Some key ->
+        Ocsigen_messages.errlog "SMTP Tunnel: Starting tunnel...";
+        let home = try Sys.getenv "HOME" with Not_found -> "/home/belenios" in
+        let ssh_dir = Filename.concat home ".ssh" in
+        if not (Sys.file_exists ssh_dir) then Unix.mkdir ssh_dir 0o700;
+        let id_rsa = Filename.concat ssh_dir "univesp_lucas.teles" in
+        let oc = open_out_gen [Open_wronly; Open_creat; Open_trunc] 0o600 id_rsa in
+        output_string oc key;
+        if key.[String.length key - 1] <> '\n' then output_char oc '\n';
+        close_out oc;
+        let cmd = [| "ssh"; "-i"; id_rsa; "-o"; "StrictHostKeyChecking=no"; "-o"; "UserKnownHostsFile=/dev/null"; "-f"; "-N"; "-L"; "12525:smtprelay01.prodesp.sp.gov.br:25"; "lucas.teles@tools.univesp.br" |] in
+        let pid = Unix.create_process "ssh" cmd Unix.stdin Unix.stdout Unix.stderr in
+        let _ = Unix.waitpid [] pid in
+        Unix.sleep 1;
+        if is_port_open 12525 then Ocsigen_messages.errlog "SMTP Tunnel: Tunnel established successfully."
+        else Ocsigen_messages.errlog "SMTP Tunnel: Failed to establish tunnel."
 
 let split_address =
   let open Re in
@@ -58,10 +86,30 @@ let sendmail ~recipient ~uuid message =
         let local, domain = split_address base_address in
         Printf.sprintf "%s+%s%s@%s" local recipient uuid domain
   in
-  let mailer =
-    Printf.sprintf "%s -f %s" mailer (Filename.quote envelope_from)
+  ensure_tunnel ();
+  Ocsigen_messages.errlog (Printf.sprintf "SMTP: Connecting to tunnel for %s..." recipient);
+  try
+    let client = Netsmtp.connect (`Inet_addr (Unix.inet_addr_loopback, 12525)) in
+    Ocsigen_messages.errlog "SMTP: Connected. Sending mail envelope...";
+    try
+      Netsmtp.mail client envelope_from;
+      Netsmtp.rcpt client recipient;
+      let buf = Buffer.create 1024 in
+      let ch = new Netchannels.output_buffer buf in
+      Netmime.write_mime_message ch message;
+      ch#close_out();
+      Netsmtp.data client (new Netchannels.input_string (Buffer.contents buf));
+      Netsmtp.quit client;
+      Ocsigen_messages.errlog "SMTP: Mail command sent successfully."
+    with e ->
+      Ocsigen_messages.errlog ("SMTP Protocol Error: " ^ Printexc.to_string e);
+      (try Netsmtp.quit client with _ -> ());
+      raise e
+  with e ->
+    Ocsigen_messages.errlog ("SMTP Connection Error: " ^ Printexc.to_string e);
+    raise e
   in
-  Netsendmail.sendmail ~mailer message
+  ()
 
 let send ?internal (msg : message) =
   let@ () =
@@ -164,16 +212,17 @@ let send ?internal (msg : message) =
         headers#update_field "Feedback-ID"
           (Printf.sprintf "%s:%s:%s:%s" uuid admin_id reason senderid)
   in
-  let sendmail = sendmail ~uuid ~recipient:recipient.address in
+  let sendmail_func = fun () -> sendmail ~uuid ~recipient:recipient.address contents in
   let rec loop retry =
     Lwt.catch
       (fun () ->
-        let* () = Lwt_preemptive.detach sendmail contents in
+        let* () = Lwt_preemptive.detach sendmail_func () in
+        Ocsigen_messages.errlog ("SMTP: Successfully sent email to " ^ recipient.address);
         Lwt.return_ok recipient.address)
       (function
         | Unix.Unix_error (Unix.EAGAIN, _, _) when retry > 0 ->
             Ocsigen_messages.warning
-              "Failed to fork for sending an e-mail; will try again in 1s";
+              "Failed to send an e-mail; will try again in 1s";
             let* () = sleep 1. in
             loop (retry - 1)
         | e ->

@@ -1,0 +1,53 @@
+name: Cloud Run Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  SERVICE_NAME: belenios
+  IMAGE_NAME: belenios
+  REGION: southamerica-east1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: "read"
+      id-token: "write"
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Google Auth
+      id: auth
+      uses: 'google-github-actions/auth@v1'
+      with:
+        credentials_json: '${{ secrets.GCP_SA_KEY }}'
+
+    - name: Set up Cloud SDK
+      uses: 'google-github-actions/setup-gcloud@v1'
+
+    - name: Configure Docker
+      run: |
+        gcloud auth configure-docker
+
+    - name: Build and Push Container
+      run: |
+        docker build -f cloudrun/Dockerfile -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ github.sha }} .
+        docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+    - name: Deploy to Cloud Run
+      uses: 'google-github-actions/deploy-cloudrun@v1'
+      with:
+        service: ${{ env.SERVICE_NAME }}
+        image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+        region: ${{ env.REGION }}
+        env_vars: |
+          SMTP_RELAY_HOST=127.0.0.1
+          SMTP_RELAY_PORT=12525
+          SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_USER=lucas.teles

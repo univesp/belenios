@@ -1,0 +1,5 @@
+kind: compute#urlMap
+name: belenios-http-redirect
+defaultUrlRedirect:
+  httpsRedirect: true
+  stripQuery: false

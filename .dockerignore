@@ -1,2 +1,15 @@
-**/node_modules
-/env.sh
+.git
+.gitignore
+_build
+_run
+node_modules
+**/*.exe
+**/*.dll
+**/*.byte
+**/*.cmo
+**/*.cmi
+**/*.cmt
+**/*.cmx
+**/*.o
+**/*.obj
+*.log

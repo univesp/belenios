@@ -1,0 +1,69 @@
+<!-- -*- Mode: Xml -*- -->
+<ocsigen>
+  <server>
+    <!-- Cloud Run requires listening on 0.0.0.0:8080 (or $PORT) -->
+    <port>8080</port>
+    <mimefile>_SHAREDIR_/mime.types</mimefile>
+    <logdir>_VARDIR_/log</logdir>
+    <datadir>_VARDIR_/lib</datadir>
+    <uploaddir>_VARDIR_/upload</uploaddir>
+    <maxuploadfilesize>5120kB</maxuploadfilesize>
+    <maxconnected>500</maxconnected>
+    <commandpipe>_RUNDIR_/ocsigenserver_command</commandpipe>
+    <charset>utf-8</charset>
+    <extension name="staticmod"/>
+    <extension name="redirectmod"/>
+    <extension name="ocsipersist">
+      <database file="_VARDIR_/lib/ocsidb"/>
+    </extension>
+    <extension name="eliom"/>
+    <host charset="utf-8" hostfilter="*" defaulthostname="homolog.votacao.univesp.br">
+      <site path="static" charset="utf-8">
+        <static dir="_SHAREDIR_/static" cache="0"/>
+      </site>
+      <eliom name="belenios">
+        <public-url prefix="https://homolog.votacao.univesp.br"/>
+        <domain name="homolog.votacao.univesp.br"/>
+        <maxrequestbodysizeinmemory value="1048576"/>
+        <maxmailsatonce value="1000"/>
+        <tos uri="https://homolog.votacao.univesp.br/terms-of-service.html"/>
+        <server
+            mail="noreply@votacao.univesp.br"
+            return-path="bounces@votacao.univesp.br"
+            encode-recipient="true"
+            name="Belenios Homologacao"
+            senderid="belenios"
+            />
+        <auth-export name="builtin-password"/>
+        <auth-export name="builtin-cas"/>
+        <auth-export name="demo"><dummy/></auth-export>
+        <auth-export name="email"><email/></auth-export>
+        <auth name="demo"><dummy allowlist="demo_allowlist"/></auth>
+        <auth name="local"><password db="local_passwords"/></auth>
+        <auth name="public"><password db="public_passwords" allowsignups="true"/></auth>
+        <auth name="email"><email/></auth>
+        <auth name="captcha"><email use_captcha="true"/></auth>
+        <source file="_SHAREDIR_/belenios.tar.gz"/>
+        <logo file="_SHAREDIR_/static/placeholder.png" mime-type="image/png"/>
+        <favicon file="_VARDIR_/favicon.ico" mime-type="image/png"/>
+        <sealing file="demo/sealing.txt" mime-type="text/plain"/>
+        <default-group group="Ed25519"/>
+        <nh-group group="Ed25519"/>
+        <share dir="_SHAREDIR_"/>
+        <storage backend="filesystem">
+          <uuid length="14"/>
+          <spool dir="_VARDIR_/spool"/>
+          <accounts dir="_VARDIR_/accounts"/>
+          <map from="demo_allowlist" to="demo/dummy_logins.txt"/>
+          <map from="local_passwords" to="demo/password_db.csv"/>
+          <map from="public_passwords" to="_VARDIR_/password_db.csv"/>
+        </storage>
+        <admin-home file="_VARDIR_/admin-home.html"/>
+        <success-snippet file="_VARDIR_/success-snippet.html"/>
+        <warning file="_VARDIR_/warning.html"/>
+        <footer file="_VARDIR_/footer.html"/>
+        <grace-period/>
+      </eliom>
+    </host>
+  </server>
+</ocsigen>
