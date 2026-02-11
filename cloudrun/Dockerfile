@@ -30,7 +30,10 @@ RUN sed -i 's/\r$//' /home/belenios/cloudrun/entrypoint.sh \
 
 # Install SSH client for tunneling
 USER root
-RUN apt-get update && apt-get install -y openssh-client && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y \
+    openssh-client \
+    libgd-securityimage-perl \
+    && rm -rf /var/lib/apt/lists/*
 USER belenios
 
 
