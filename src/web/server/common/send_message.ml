@@ -89,21 +89,28 @@ let sendmail ~recipient ~uuid message =
   ensure_tunnel ();
   Ocsigen_messages.errlog (Printf.sprintf "SMTP: Connecting to tunnel for %s..." recipient);
   try
-    let client = new Netsmtp.client (`Inet_addr (Unix.inet_addr_loopback, 12525)) in
+    let s = Unix.socket Unix.PF_INET Unix.SOCK_STREAM 0 in
+    Unix.connect s (Unix.ADDR_INET (Unix.inet_addr_loopback, 12525));
+    let ic = Unix.in_channel_of_descr s in
+    let oc = Unix.out_channel_of_descr s in
+    let in_obj = new Netchannels.input_channel ic in
+    let out_obj = new Netchannels.output_channel oc in
+    let client = new Netsmtp.client in_obj out_obj in
+    
     Ocsigen_messages.errlog "SMTP: Connected. Sending mail envelope...";
     try
-      Netsmtp.mail client envelope_from;
-      Netsmtp.rcpt client recipient;
+      client#mail envelope_from;
+      client#rcpt recipient;
       let buf = Buffer.create 1024 in
       let ch = new Netchannels.output_buffer buf in
       Netmime.write_mime_message ch message;
       ch#close_out();
-      Netsmtp.data client (new Netchannels.input_string (Buffer.contents buf));
-      Netsmtp.quit client;
+      client#data (new Netchannels.input_string (Buffer.contents buf));
+      client#quit ();
       Ocsigen_messages.errlog "SMTP: Mail command sent successfully."
     with e ->
       Ocsigen_messages.errlog ("SMTP Protocol Error: " ^ Printexc.to_string e);
-      (try Netsmtp.quit client with _ -> ());
+      (try client#quit () with _ -> ());
       raise e
   with e ->
     Ocsigen_messages.errlog ("SMTP Connection Error: " ^ Printexc.to_string e);
