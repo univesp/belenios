@@ -90,10 +90,23 @@ let sendmail ~recipient ~uuid message =
   Ocsigen_messages.errlog (Printf.sprintf "SMTP: Sending mail via tunnel for %s..." recipient);
   try
     let addr = `Inet_addr (Unix.inet_addr_loopback, 12525) in
-    Netsmtp.sendmail ~server:addr ~from_addr:envelope_from ~to_addrs:[recipient] message;
-    Ocsigen_messages.errlog "SMTP: Mail sent successfully."
+    let client = new Netsmtp.client addr () in
+    try
+      client#mail envelope_from;
+      client#rcpt recipient;
+      let buf = Buffer.create 1024 in
+      let ch = new Netchannels.output_buffer buf in
+      Netmime_channels.write_mime_message ch message;
+      ch#close_out();
+      client#data (new Netchannels.input_string (Buffer.contents buf));
+      client#quit ();
+      Ocsigen_messages.errlog "SMTP: Mail sent successfully."
+    with e ->
+      Ocsigen_messages.errlog ("SMTP Protocol Error: " ^ Printexc.to_string e);
+      (try client#quit () with _ -> ());
+      raise e
   with e ->
-    Ocsigen_messages.errlog ("SMTP Error: " ^ Printexc.to_string e);
+    Ocsigen_messages.errlog ("SMTP Connection Error: " ^ Printexc.to_string e);
     raise e
 
 
