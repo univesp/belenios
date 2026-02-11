@@ -120,7 +120,7 @@ let sendmail ~recipient ~uuid message =
     let out_obj = new Netchannels.output_channel oc in
     let client = new Netsmtp.client in_obj out_obj in
     try
-      client#helo !Web_config.server_name;
+      client#helo ~host:!Web_config.server_name ();
       client#mail envelope_from;
       client#rcpt recipient;
       let buf = Buffer.create 1024 in
