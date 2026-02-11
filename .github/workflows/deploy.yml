@@ -33,12 +33,14 @@ jobs:
 
     - name: Configure Docker
       run: |
-        gcloud auth configure-docker
+        gcloud auth configure-docker gcr.io --quiet
 
     - name: Build and Push Container
       run: |
         docker build -f cloudrun/Dockerfile -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ github.sha }} .
         docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+        docker tag gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ github.sha }} gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.IMAGE_NAME }}:latest
+        docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.IMAGE_NAME }}:latest
 
     - name: Deploy to Cloud Run
       uses: 'google-github-actions/deploy-cloudrun@v1'
