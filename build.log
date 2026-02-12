@@ -1,0 +1,756 @@
+deploy	Set up job	﻿2026-02-11T18:07:16.1859380Z Current runner version: '2.331.0'
+deploy	Set up job	2026-02-11T18:07:16.1886770Z ##[group]Runner Image Provisioner
+deploy	Set up job	2026-02-11T18:07:16.1888030Z Hosted Compute Agent
+deploy	Set up job	2026-02-11T18:07:16.1888875Z Version: 20260123.484
+deploy	Set up job	2026-02-11T18:07:16.1889860Z Commit: 6bd6555ca37d84114959e1c76d2c01448ff61c5d
+deploy	Set up job	2026-02-11T18:07:16.1890925Z Build Date: 2026-01-23T19:41:17Z
+deploy	Set up job	2026-02-11T18:07:16.1892087Z Worker ID: ***907da617-c44a-4c85-9a87-50c53ffdb677***
+deploy	Set up job	2026-02-11T18:07:16.1893311Z Azure Region: northcentralus
+deploy	Set up job	2026-02-11T18:07:16.1894285Z ##[endgroup]
+deploy	Set up job	2026-02-11T18:07:16.1896118Z ##[group]Operating System
+deploy	Set up job	2026-02-11T18:07:16.1897166Z Ubuntu
+deploy	Set up job	2026-02-11T18:07:16.1897923Z 24.04.3
+deploy	Set up job	2026-02-11T18:07:16.1898754Z LTS
+deploy	Set up job	2026-02-11T18:07:16.1899498Z ##[endgroup]
+deploy	Set up job	2026-02-11T18:07:16.1900538Z ##[group]Runner Image
+deploy	Set up job	2026-02-11T18:07:16.1901423Z Image: ubuntu-24.04
+deploy	Set up job	2026-02-11T18:07:16.1902356Z Version: 20260201.15.1
+deploy	Set up job	2026-02-11T18:07:16.1903881Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260201.15/images/ubuntu/Ubuntu2404-Readme.md
+deploy	Set up job	2026-02-11T18:07:16.1906030Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260201.15
+deploy	Set up job	2026-02-11T18:07:16.1907326Z ##[endgroup]
+deploy	Set up job	2026-02-11T18:07:16.1908892Z ##[group]GITHUB_TOKEN Permissions
+deploy	Set up job	2026-02-11T18:07:16.1911357Z Contents: read
+deploy	Set up job	2026-02-11T18:07:16.1912323Z Metadata: read
+deploy	Set up job	2026-02-11T18:07:16.1913363Z ##[endgroup]
+deploy	Set up job	2026-02-11T18:07:16.1915913Z Secret source: Actions
+deploy	Set up job	2026-02-11T18:07:16.1917191Z Prepare workflow directory
+deploy	Set up job	2026-02-11T18:07:16.2325420Z Prepare all required actions
+deploy	Set up job	2026-02-11T18:07:16.2363998Z Getting action download info
+deploy	Set up job	2026-02-11T18:07:16.6855297Z Download action repository 'actions/checkout@v3' (SHA:f43a0e5ff2bd294095638e18286ca9a3d1956744)
+deploy	Set up job	2026-02-11T18:07:16.7942304Z Download action repository 'google-github-actions/auth@v1' (SHA:3a3c4c57d294ef65efaaee4ff17b22fa88dd3c69)
+deploy	Set up job	2026-02-11T18:07:17.1698206Z Download action repository 'google-github-actions/setup-gcloud@v1' (SHA:e30db14379863a8c79331b04a9969f4c1e225e0b)
+deploy	Set up job	2026-02-11T18:07:17.4848458Z Download action repository 'google-github-actions/deploy-cloudrun@v1' (SHA:e62f655d5754bec48078a72edc015367b01ee97b)
+deploy	Set up job	2026-02-11T18:07:18.0355671Z Complete job name: deploy
+deploy	Checkout	﻿2026-02-11T18:07:18.1244602Z ##[group]Run actions/checkout@v3
+deploy	Checkout	2026-02-11T18:07:18.1246356Z with:
+deploy	Checkout	2026-02-11T18:07:18.1247424Z   repository: univesp/belenios
+deploy	Checkout	2026-02-11T18:07:18.1249042Z   token: ***
+deploy	Checkout	2026-02-11T18:07:18.1250087Z   ssh-strict: true
+deploy	Checkout	2026-02-11T18:07:18.1251183Z   persist-credentials: true
+deploy	Checkout	2026-02-11T18:07:18.1252355Z   clean: true
+deploy	Checkout	2026-02-11T18:07:18.1253612Z   sparse-checkout-cone-mode: true
+deploy	Checkout	2026-02-11T18:07:18.1254889Z   fetch-depth: 1
+deploy	Checkout	2026-02-11T18:07:18.1255947Z   fetch-tags: false
+deploy	Checkout	2026-02-11T18:07:18.1257031Z   lfs: false
+deploy	Checkout	2026-02-11T18:07:18.1258053Z   submodules: false
+deploy	Checkout	2026-02-11T18:07:18.1259171Z   set-safe-directory: true
+deploy	Checkout	2026-02-11T18:07:18.1260597Z env:
+deploy	Checkout	2026-02-11T18:07:18.1261602Z   SERVICE_NAME: belenios
+deploy	Checkout	2026-02-11T18:07:18.1262757Z   IMAGE_NAME: belenios
+deploy	Checkout	2026-02-11T18:07:18.1264044Z   REGION: southamerica-east1
+deploy	Checkout	2026-02-11T18:07:18.1265257Z ##[endgroup]
+deploy	Checkout	2026-02-11T18:07:18.2308009Z Syncing repository: univesp/belenios
+deploy	Checkout	2026-02-11T18:07:18.2313038Z ##[group]Getting Git version info
+deploy	Checkout	2026-02-11T18:07:18.2316083Z Working directory is '/home/runner/work/belenios/belenios'
+deploy	Checkout	2026-02-11T18:07:18.2320026Z [command]/usr/bin/git version
+deploy	Checkout	2026-02-11T18:07:18.2322131Z git version 2.52.0
+deploy	Checkout	2026-02-11T18:07:18.2329055Z ##[endgroup]
+deploy	Checkout	2026-02-11T18:07:18.2339075Z Temporarily overriding HOME='/home/runner/work/_temp/80a6a38f-9818-4654-8040-f2f512db1ff6' before making global git config changes
+deploy	Checkout	2026-02-11T18:07:18.2343621Z Adding repository directory to the temporary git global config as a safe directory
+deploy	Checkout	2026-02-11T18:07:18.2346248Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/belenios/belenios
+deploy	Checkout	2026-02-11T18:07:18.2386749Z Deleting the contents of '/home/runner/work/belenios/belenios'
+deploy	Checkout	2026-02-11T18:07:18.2391379Z ##[group]Initializing the repository
+deploy	Checkout	2026-02-11T18:07:18.2394977Z [command]/usr/bin/git init /home/runner/work/belenios/belenios
+deploy	Checkout	2026-02-11T18:07:18.2503595Z hint: Using 'master' as the name for the initial branch. This default branch name
+deploy	Checkout	2026-02-11T18:07:18.2507591Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+deploy	Checkout	2026-02-11T18:07:18.2511273Z hint: to use in all of your new repositories, which will suppress this warning,
+deploy	Checkout	2026-02-11T18:07:18.2514524Z hint: call:
+deploy	Checkout	2026-02-11T18:07:18.2516287Z hint:
+deploy	Checkout	2026-02-11T18:07:18.2518388Z hint: 	git config --global init.defaultBranch <name>
+deploy	Checkout	2026-02-11T18:07:18.2520849Z hint:
+deploy	Checkout	2026-02-11T18:07:18.2523463Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+deploy	Checkout	2026-02-11T18:07:18.2527005Z hint: 'development'. The just-created branch can be renamed via this command:
+deploy	Checkout	2026-02-11T18:07:18.2528979Z hint:
+deploy	Checkout	2026-02-11T18:07:18.2530092Z hint: 	git branch -m <name>
+deploy	Checkout	2026-02-11T18:07:18.2531275Z hint:
+deploy	Checkout	2026-02-11T18:07:18.2532792Z hint: Disable this message with "git config set advice.defaultBranchName false"
+deploy	Checkout	2026-02-11T18:07:18.2535885Z Initialized empty Git repository in /home/runner/work/belenios/belenios/.git/
+deploy	Checkout	2026-02-11T18:07:18.2541579Z [command]/usr/bin/git remote add origin https://github.com/univesp/belenios
+deploy	Checkout	2026-02-11T18:07:18.2572895Z ##[endgroup]
+deploy	Checkout	2026-02-11T18:07:18.2576657Z ##[group]Disabling automatic garbage collection
+deploy	Checkout	2026-02-11T18:07:18.2579632Z [command]/usr/bin/git config --local gc.auto 0
+deploy	Checkout	2026-02-11T18:07:18.2618739Z ##[endgroup]
+deploy	Checkout	2026-02-11T18:07:18.2621848Z ##[group]Setting up auth
+deploy	Checkout	2026-02-11T18:07:18.2625296Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+deploy	Checkout	2026-02-11T18:07:18.2655763Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+deploy	Checkout	2026-02-11T18:07:18.3008652Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+deploy	Checkout	2026-02-11T18:07:18.3039175Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+deploy	Checkout	2026-02-11T18:07:18.3271475Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+deploy	Checkout	2026-02-11T18:07:18.3314126Z ##[endgroup]
+deploy	Checkout	2026-02-11T18:07:18.3318735Z ##[group]Fetching the repository
+deploy	Checkout	2026-02-11T18:07:18.3324804Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +f12a18470be7edf474e264f2cef2f3ec4e7b0c13:refs/remotes/origin/master
+deploy	Checkout	2026-02-11T18:07:18.5921312Z remote: Enumerating objects: 787, done.        
+deploy	Checkout	2026-02-11T18:07:18.5924268Z remote: Counting objects:   0% (1/787)        
+deploy	Checkout	2026-02-11T18:07:18.5925825Z remote: Counting objects:   1% (8/787)        
+deploy	Checkout	2026-02-11T18:07:18.5927318Z remote: Counting objects:   2% (16/787)        
+deploy	Checkout	2026-02-11T18:07:18.5928828Z remote: Counting objects:   3% (24/787)        
+deploy	Checkout	2026-02-11T18:07:18.5930338Z remote: Counting objects:   4% (32/787)        
+deploy	Checkout	2026-02-11T18:07:18.5931917Z remote: Counting objects:   5% (40/787)        
+deploy	Checkout	2026-02-11T18:07:18.5933683Z remote: Counting objects:   6% (48/787)        
+deploy	Checkout	2026-02-11T18:07:18.5935224Z remote: Counting objects:   7% (56/787)        
+deploy	Checkout	2026-02-11T18:07:18.5936706Z remote: Counting objects:   8% (63/787)        
+deploy	Checkout	2026-02-11T18:07:18.5938182Z remote: Counting objects:   9% (71/787)        
+deploy	Checkout	2026-02-11T18:07:18.5939675Z remote: Counting objects:  10% (79/787)        
+deploy	Checkout	2026-02-11T18:07:18.5941160Z remote: Counting objects:  11% (87/787)        
+deploy	Checkout	2026-02-11T18:07:18.5942641Z remote: Counting objects:  12% (95/787)        
+deploy	Checkout	2026-02-11T18:07:18.5944306Z remote: Counting objects:  13% (103/787)        
+deploy	Checkout	2026-02-11T18:07:18.5945797Z remote: Counting objects:  14% (111/787)        
+deploy	Checkout	2026-02-11T18:07:18.5947290Z remote: Counting objects:  15% (119/787)        
+deploy	Checkout	2026-02-11T18:07:18.5948778Z remote: Counting objects:  16% (126/787)        
+deploy	Checkout	2026-02-11T18:07:18.5950270Z remote: Counting objects:  17% (134/787)        
+deploy	Checkout	2026-02-11T18:07:18.5952110Z remote: Counting objects:  18% (142/787)        
+deploy	Checkout	2026-02-11T18:07:18.5953800Z remote: Counting objects:  19% (150/787)        
+deploy	Checkout	2026-02-11T18:07:18.5955317Z remote: Counting objects:  20% (158/787)        
+deploy	Checkout	2026-02-11T18:07:18.5956797Z remote: Counting objects:  21% (166/787)        
+deploy	Checkout	2026-02-11T18:07:18.5958285Z remote: Counting objects:  22% (174/787)        
+deploy	Checkout	2026-02-11T18:07:18.5959763Z remote: Counting objects:  23% (182/787)        
+deploy	Checkout	2026-02-11T18:07:18.5961246Z remote: Counting objects:  24% (189/787)        
+deploy	Checkout	2026-02-11T18:07:18.5962736Z remote: Counting objects:  25% (197/787)        
+deploy	Checkout	2026-02-11T18:07:18.5964468Z remote: Counting objects:  26% (205/787)        
+deploy	Checkout	2026-02-11T18:07:18.5965978Z remote: Counting objects:  27% (213/787)        
+deploy	Checkout	2026-02-11T18:07:18.5967462Z remote: Counting objects:  28% (221/787)        
+deploy	Checkout	2026-02-11T18:07:18.5968948Z remote: Counting objects:  29% (229/787)        
+deploy	Checkout	2026-02-11T18:07:18.5970431Z remote: Counting objects:  30% (237/787)        
+deploy	Checkout	2026-02-11T18:07:18.5971920Z remote: Counting objects:  31% (244/787)        
+deploy	Checkout	2026-02-11T18:07:18.6073885Z remote: Counting objects:  32% (252/787)        
+deploy	Checkout	2026-02-11T18:07:18.6077097Z remote: Counting objects:  33% (260/787)        
+deploy	Checkout	2026-02-11T18:07:18.6079258Z remote: Counting objects:  34% (268/787)        
+deploy	Checkout	2026-02-11T18:07:18.6081388Z remote: Counting objects:  35% (276/787)        
+deploy	Checkout	2026-02-11T18:07:18.6083940Z remote: Counting objects:  36% (284/787)        
+deploy	Checkout	2026-02-11T18:07:18.6085473Z remote: Counting objects:  37% (292/787)        
+deploy	Checkout	2026-02-11T18:07:18.6086966Z remote: Counting objects:  38% (300/787)        
+deploy	Checkout	2026-02-11T18:07:18.6088467Z remote: Counting objects:  39% (307/787)        
+deploy	Checkout	2026-02-11T18:07:18.6089965Z remote: Counting objects:  40% (315/787)        
+deploy	Checkout	2026-02-11T18:07:18.6091463Z remote: Counting objects:  41% (323/787)        
+deploy	Checkout	2026-02-11T18:07:18.6092957Z remote: Counting objects:  42% (331/787)        
+deploy	Checkout	2026-02-11T18:07:18.6094560Z remote: Counting objects:  43% (339/787)        
+deploy	Checkout	2026-02-11T18:07:18.6096695Z remote: Counting objects:  44% (347/787)        
+deploy	Checkout	2026-02-11T18:07:18.6098439Z remote: Counting objects:  45% (355/787)        
+deploy	Checkout	2026-02-11T18:07:18.6099923Z remote: Counting objects:  46% (363/787)        
+deploy	Checkout	2026-02-11T18:07:18.6102435Z remote: Counting objects:  47% (370/787)        
+deploy	Checkout	2026-02-11T18:07:18.6104103Z remote: Counting objects:  48% (378/787)        
+deploy	Checkout	2026-02-11T18:07:18.6105602Z remote: Counting objects:  49% (386/787)        
+deploy	Checkout	2026-02-11T18:07:18.6107806Z remote: Counting objects:  50% (394/787)        
+deploy	Checkout	2026-02-11T18:07:18.6109340Z remote: Counting objects:  51% (402/787)        
+deploy	Checkout	2026-02-11T18:07:18.6110838Z remote: Counting objects:  52% (410/787)        
+deploy	Checkout	2026-02-11T18:07:18.6112374Z remote: Counting objects:  53% (418/787)        
+deploy	Checkout	2026-02-11T18:07:18.6113994Z remote: Counting objects:  54% (425/787)        
+deploy	Checkout	2026-02-11T18:07:18.6115482Z remote: Counting objects:  55% (433/787)        
+deploy	Checkout	2026-02-11T18:07:18.6116962Z remote: Counting objects:  56% (441/787)        
+deploy	Checkout	2026-02-11T18:07:18.6118474Z remote: Counting objects:  57% (449/787)        
+deploy	Checkout	2026-02-11T18:07:18.6119953Z remote: Counting objects:  58% (457/787)        
+deploy	Checkout	2026-02-11T18:07:18.6121424Z remote: Counting objects:  59% (465/787)        
+deploy	Checkout	2026-02-11T18:07:18.6122910Z remote: Counting objects:  60% (473/787)        
+deploy	Checkout	2026-02-11T18:07:18.6124492Z remote: Counting objects:  61% (481/787)        
+deploy	Checkout	2026-02-11T18:07:18.6125971Z remote: Counting objects:  62% (488/787)        
+deploy	Checkout	2026-02-11T18:07:18.6127452Z remote: Counting objects:  63% (496/787)        
+deploy	Checkout	2026-02-11T18:07:18.6128948Z remote: Counting objects:  64% (504/787)        
+deploy	Checkout	2026-02-11T18:07:18.6130432Z remote: Counting objects:  65% (512/787)        
+deploy	Checkout	2026-02-11T18:07:18.6131911Z remote: Counting objects:  66% (520/787)        
+deploy	Checkout	2026-02-11T18:07:18.6133485Z remote: Counting objects:  67% (528/787)        
+deploy	Checkout	2026-02-11T18:07:18.6134970Z remote: Counting objects:  68% (536/787)        
+deploy	Checkout	2026-02-11T18:07:18.6136465Z remote: Counting objects:  69% (544/787)        
+deploy	Checkout	2026-02-11T18:07:18.6138150Z remote: Counting objects:  70% (551/787)        
+deploy	Checkout	2026-02-11T18:07:18.6139654Z remote: Counting objects:  71% (559/787)        
+deploy	Checkout	2026-02-11T18:07:18.6141139Z remote: Counting objects:  72% (567/787)        
+deploy	Checkout	2026-02-11T18:07:18.6142644Z remote: Counting objects:  73% (575/787)        
+deploy	Checkout	2026-02-11T18:07:18.6144214Z remote: Counting objects:  74% (583/787)        
+deploy	Checkout	2026-02-11T18:07:18.6145678Z remote: Counting objects:  75% (591/787)        
+deploy	Checkout	2026-02-11T18:07:18.6147152Z remote: Counting objects:  76% (599/787)        
+deploy	Checkout	2026-02-11T18:07:18.6148616Z remote: Counting objects:  77% (606/787)        
+deploy	Checkout	2026-02-11T18:07:18.6150083Z remote: Counting objects:  78% (614/787)        
+deploy	Checkout	2026-02-11T18:07:18.6151566Z remote: Counting objects:  79% (622/787)        
+deploy	Checkout	2026-02-11T18:07:18.6153051Z remote: Counting objects:  80% (630/787)        
+deploy	Checkout	2026-02-11T18:07:18.6154607Z remote: Counting objects:  81% (638/787)        
+deploy	Checkout	2026-02-11T18:07:18.6156069Z remote: Counting objects:  82% (646/787)        
+deploy	Checkout	2026-02-11T18:07:18.6157535Z remote: Counting objects:  83% (654/787)        
+deploy	Checkout	2026-02-11T18:07:18.6159004Z remote: Counting objects:  84% (662/787)        
+deploy	Checkout	2026-02-11T18:07:18.6160469Z remote: Counting objects:  85% (669/787)        
+deploy	Checkout	2026-02-11T18:07:18.6161950Z remote: Counting objects:  86% (677/787)        
+deploy	Checkout	2026-02-11T18:07:18.6163513Z remote: Counting objects:  87% (685/787)        
+deploy	Checkout	2026-02-11T18:07:18.6164981Z remote: Counting objects:  88% (693/787)        
+deploy	Checkout	2026-02-11T18:07:18.6166435Z remote: Counting objects:  89% (701/787)        
+deploy	Checkout	2026-02-11T18:07:18.6167926Z remote: Counting objects:  90% (709/787)        
+deploy	Checkout	2026-02-11T18:07:18.6169400Z remote: Counting objects:  91% (717/787)        
+deploy	Checkout	2026-02-11T18:07:18.6170862Z remote: Counting objects:  92% (725/787)        
+deploy	Checkout	2026-02-11T18:07:18.6172327Z remote: Counting objects:  93% (732/787)        
+deploy	Checkout	2026-02-11T18:07:18.6173881Z remote: Counting objects:  94% (740/787)        
+deploy	Checkout	2026-02-11T18:07:18.6175346Z remote: Counting objects:  95% (748/787)        
+deploy	Checkout	2026-02-11T18:07:18.6176818Z remote: Counting objects:  96% (756/787)        
+deploy	Checkout	2026-02-11T18:07:18.6178309Z remote: Counting objects:  97% (764/787)        
+deploy	Checkout	2026-02-11T18:07:18.6179784Z remote: Counting objects:  98% (772/787)        
+deploy	Checkout	2026-02-11T18:07:18.6181397Z remote: Counting objects:  99% (780/787)        
+deploy	Checkout	2026-02-11T18:07:18.6182851Z remote: Counting objects: 100% (787/787)        
+deploy	Checkout	2026-02-11T18:07:18.6184490Z remote: Counting objects: 100% (787/787), done.        
+deploy	Checkout	2026-02-11T18:07:18.6186040Z remote: Compressing objects:   0% (1/717)        
+deploy	Checkout	2026-02-11T18:07:18.6187544Z remote: Compressing objects:   1% (8/717)        
+deploy	Checkout	2026-02-11T18:07:18.6189052Z remote: Compressing objects:   2% (15/717)        
+deploy	Checkout	2026-02-11T18:07:18.6191281Z remote: Compressing objects:   3% (22/717)        
+deploy	Checkout	2026-02-11T18:07:18.6192869Z remote: Compressing objects:   4% (29/717)        
+deploy	Checkout	2026-02-11T18:07:18.6194508Z remote: Compressing objects:   5% (36/717)        
+deploy	Checkout	2026-02-11T18:07:18.6196047Z remote: Compressing objects:   6% (44/717)        
+deploy	Checkout	2026-02-11T18:07:18.6197561Z remote: Compressing objects:   7% (51/717)        
+deploy	Checkout	2026-02-11T18:07:18.6199103Z remote: Compressing objects:   8% (58/717)        
+deploy	Checkout	2026-02-11T18:07:18.6200613Z remote: Compressing objects:   9% (65/717)        
+deploy	Checkout	2026-02-11T18:07:18.6202144Z remote: Compressing objects:  10% (72/717)        
+deploy	Checkout	2026-02-11T18:07:18.6203762Z remote: Compressing objects:  11% (79/717)        
+deploy	Checkout	2026-02-11T18:07:18.6205289Z remote: Compressing objects:  12% (87/717)        
+deploy	Checkout	2026-02-11T18:07:18.6206814Z remote: Compressing objects:  13% (94/717)        
+deploy	Checkout	2026-02-11T18:07:18.6208320Z remote: Compressing objects:  14% (101/717)        
+deploy	Checkout	2026-02-11T18:07:18.6209851Z remote: Compressing objects:  15% (108/717)        
+deploy	Checkout	2026-02-11T18:07:18.6211441Z remote: Compressing objects:  16% (115/717)        
+deploy	Checkout	2026-02-11T18:07:18.6212961Z remote: Compressing objects:  17% (122/717)        
+deploy	Checkout	2026-02-11T18:07:18.6214583Z remote: Compressing objects:  18% (130/717)        
+deploy	Checkout	2026-02-11T18:07:18.6363457Z remote: Compressing objects:  19% (137/717)        
+deploy	Checkout	2026-02-11T18:07:18.6553854Z remote: Compressing objects:  20% (144/717)        
+deploy	Checkout	2026-02-11T18:07:18.6692597Z remote: Compressing objects:  21% (151/717)        
+deploy	Checkout	2026-02-11T18:07:18.6767640Z remote: Compressing objects:  22% (158/717)        
+deploy	Checkout	2026-02-11T18:07:18.6856288Z remote: Compressing objects:  23% (165/717)        
+deploy	Checkout	2026-02-11T18:07:18.6972331Z remote: Compressing objects:  24% (173/717)        
+deploy	Checkout	2026-02-11T18:07:18.6981810Z remote: Compressing objects:  25% (180/717)        
+deploy	Checkout	2026-02-11T18:07:18.6984297Z remote: Compressing objects:  26% (187/717)        
+deploy	Checkout	2026-02-11T18:07:18.7002845Z remote: Compressing objects:  27% (194/717)        
+deploy	Checkout	2026-02-11T18:07:18.7022725Z remote: Compressing objects:  28% (201/717)        
+deploy	Checkout	2026-02-11T18:07:18.7054205Z remote: Compressing objects:  29% (208/717)        
+deploy	Checkout	2026-02-11T18:07:18.7101219Z remote: Compressing objects:  30% (216/717)        
+deploy	Checkout	2026-02-11T18:07:18.7123858Z remote: Compressing objects:  31% (223/717)        
+deploy	Checkout	2026-02-11T18:07:18.7150484Z remote: Compressing objects:  32% (230/717)        
+deploy	Checkout	2026-02-11T18:07:18.7181058Z remote: Compressing objects:  33% (237/717)        
+deploy	Checkout	2026-02-11T18:07:18.7202071Z remote: Compressing objects:  34% (244/717)        
+deploy	Checkout	2026-02-11T18:07:18.7224869Z remote: Compressing objects:  35% (251/717)        
+deploy	Checkout	2026-02-11T18:07:18.7247380Z remote: Compressing objects:  36% (259/717)        
+deploy	Checkout	2026-02-11T18:07:18.7275771Z remote: Compressing objects:  37% (266/717)        
+deploy	Checkout	2026-02-11T18:07:18.7288565Z remote: Compressing objects:  38% (273/717)        
+deploy	Checkout	2026-02-11T18:07:18.7318765Z remote: Compressing objects:  39% (280/717)        
+deploy	Checkout	2026-02-11T18:07:18.7366697Z remote: Compressing objects:  40% (287/717)        
+deploy	Checkout	2026-02-11T18:07:18.7390109Z remote: Compressing objects:  41% (294/717)        
+deploy	Checkout	2026-02-11T18:07:18.7411462Z remote: Compressing objects:  42% (302/717)        
+deploy	Checkout	2026-02-11T18:07:18.7443484Z remote: Compressing objects:  43% (309/717)        
+deploy	Checkout	2026-02-11T18:07:18.7459048Z remote: Compressing objects:  44% (316/717)        
+deploy	Checkout	2026-02-11T18:07:18.7484483Z remote: Compressing objects:  45% (323/717)        
+deploy	Checkout	2026-02-11T18:07:18.7510687Z remote: Compressing objects:  46% (330/717)        
+deploy	Checkout	2026-02-11T18:07:18.7539163Z remote: Compressing objects:  47% (337/717)        
+deploy	Checkout	2026-02-11T18:07:18.7572172Z remote: Compressing objects:  48% (345/717)        
+deploy	Checkout	2026-02-11T18:07:18.7591648Z remote: Compressing objects:  49% (352/717)        
+deploy	Checkout	2026-02-11T18:07:18.7602516Z remote: Compressing objects:  50% (359/717)        
+deploy	Checkout	2026-02-11T18:07:18.7604552Z remote: Compressing objects:  51% (366/717)        
+deploy	Checkout	2026-02-11T18:07:18.7611054Z remote: Compressing objects:  52% (373/717)        
+deploy	Checkout	2026-02-11T18:07:18.7616798Z remote: Compressing objects:  53% (381/717)        
+deploy	Checkout	2026-02-11T18:07:18.7621823Z remote: Compressing objects:  54% (388/717)        
+deploy	Checkout	2026-02-11T18:07:18.7629738Z remote: Compressing objects:  55% (395/717)        
+deploy	Checkout	2026-02-11T18:07:18.7634793Z remote: Compressing objects:  56% (402/717)        
+deploy	Checkout	2026-02-11T18:07:18.7640201Z remote: Compressing objects:  57% (409/717)        
+deploy	Checkout	2026-02-11T18:07:18.7645035Z remote: Compressing objects:  58% (416/717)        
+deploy	Checkout	2026-02-11T18:07:18.7649645Z remote: Compressing objects:  59% (424/717)        
+deploy	Checkout	2026-02-11T18:07:18.7658278Z remote: Compressing objects:  60% (431/717)        
+deploy	Checkout	2026-02-11T18:07:18.7665465Z remote: Compressing objects:  61% (438/717)        
+deploy	Checkout	2026-02-11T18:07:18.7673377Z remote: Compressing objects:  62% (445/717)        
+deploy	Checkout	2026-02-11T18:07:18.7682116Z remote: Compressing objects:  63% (452/717)        
+deploy	Checkout	2026-02-11T18:07:18.7686389Z remote: Compressing objects:  64% (459/717)        
+deploy	Checkout	2026-02-11T18:07:18.7693818Z remote: Compressing objects:  65% (467/717)        
+deploy	Checkout	2026-02-11T18:07:18.7698047Z remote: Compressing objects:  66% (474/717)        
+deploy	Checkout	2026-02-11T18:07:18.7701458Z remote: Compressing objects:  67% (481/717)        
+deploy	Checkout	2026-02-11T18:07:18.7706051Z remote: Compressing objects:  68% (488/717)        
+deploy	Checkout	2026-02-11T18:07:18.7712903Z remote: Compressing objects:  69% (495/717)        
+deploy	Checkout	2026-02-11T18:07:18.7717997Z remote: Compressing objects:  70% (502/717)        
+deploy	Checkout	2026-02-11T18:07:18.7721768Z remote: Compressing objects:  71% (510/717)        
+deploy	Checkout	2026-02-11T18:07:18.7725324Z remote: Compressing objects:  72% (517/717)        
+deploy	Checkout	2026-02-11T18:07:18.7730366Z remote: Compressing objects:  73% (524/717)        
+deploy	Checkout	2026-02-11T18:07:18.7733392Z remote: Compressing objects:  74% (531/717)        
+deploy	Checkout	2026-02-11T18:07:18.7735439Z remote: Compressing objects:  75% (538/717)        
+deploy	Checkout	2026-02-11T18:07:18.7736987Z remote: Compressing objects:  76% (545/717)        
+deploy	Checkout	2026-02-11T18:07:18.7738663Z remote: Compressing objects:  77% (553/717)        
+deploy	Checkout	2026-02-11T18:07:18.7740407Z remote: Compressing objects:  78% (560/717)        
+deploy	Checkout	2026-02-11T18:07:18.7742196Z remote: Compressing objects:  79% (567/717)        
+deploy	Checkout	2026-02-11T18:07:18.7743937Z remote: Compressing objects:  80% (574/717)        
+deploy	Checkout	2026-02-11T18:07:18.7745460Z remote: Compressing objects:  81% (581/717)        
+deploy	Checkout	2026-02-11T18:07:18.7767654Z remote: Compressing objects:  82% (588/717)        
+deploy	Checkout	2026-02-11T18:07:18.7769787Z remote: Compressing objects:  83% (596/717)        
+deploy	Checkout	2026-02-11T18:07:18.7782315Z remote: Compressing objects:  84% (603/717)        
+deploy	Checkout	2026-02-11T18:07:18.7814170Z remote: Compressing objects:  85% (610/717)        
+deploy	Checkout	2026-02-11T18:07:18.7816881Z remote: Compressing objects:  86% (617/717)        
+deploy	Checkout	2026-02-11T18:07:18.7818612Z remote: Compressing objects:  87% (624/717)        
+deploy	Checkout	2026-02-11T18:07:18.7822788Z remote: Compressing objects:  88% (631/717)        
+deploy	Checkout	2026-02-11T18:07:18.7825401Z remote: Compressing objects:  89% (639/717)        
+deploy	Checkout	2026-02-11T18:07:18.7828239Z remote: Compressing objects:  90% (646/717)        
+deploy	Checkout	2026-02-11T18:07:18.7830406Z remote: Compressing objects:  91% (653/717)        
+deploy	Checkout	2026-02-11T18:07:18.7831983Z remote: Compressing objects:  92% (660/717)        
+deploy	Checkout	2026-02-11T18:07:18.7833746Z remote: Compressing objects:  93% (667/717)        
+deploy	Checkout	2026-02-11T18:07:18.7835326Z remote: Compressing objects:  94% (674/717)        
+deploy	Checkout	2026-02-11T18:07:18.7836858Z remote: Compressing objects:  95% (682/717)        
+deploy	Checkout	2026-02-11T18:07:18.7838407Z remote: Compressing objects:  96% (689/717)        
+deploy	Checkout	2026-02-11T18:07:18.7839932Z remote: Compressing objects:  97% (696/717)        
+deploy	Checkout	2026-02-11T18:07:18.7841444Z remote: Compressing objects:  98% (703/717)        
+deploy	Checkout	2026-02-11T18:07:18.7843361Z remote: Compressing objects:  99% (710/717)        
+deploy	Checkout	2026-02-11T18:07:18.7844876Z remote: Compressing objects: 100% (717/717)        
+deploy	Checkout	2026-02-11T18:07:18.7846896Z remote: Compressing objects: 100% (717/717), done.        
+deploy	Checkout	2026-02-11T18:07:18.7878261Z Receiving objects:   0% (1/787)
+deploy	Checkout	2026-02-11T18:07:18.7888007Z Receiving objects:   1% (8/787)
+deploy	Checkout	2026-02-11T18:07:18.7890264Z Receiving objects:   2% (16/787)
+deploy	Checkout	2026-02-11T18:07:18.7892419Z Receiving objects:   3% (24/787)
+deploy	Checkout	2026-02-11T18:07:18.7894521Z Receiving objects:   4% (32/787)
+deploy	Checkout	2026-02-11T18:07:18.7936362Z Receiving objects:   5% (40/787)
+deploy	Checkout	2026-02-11T18:07:18.7980326Z Receiving objects:   6% (48/787)
+deploy	Checkout	2026-02-11T18:07:18.7987546Z Receiving objects:   7% (56/787)
+deploy	Checkout	2026-02-11T18:07:18.8004662Z Receiving objects:   8% (63/787)
+deploy	Checkout	2026-02-11T18:07:18.8007563Z Receiving objects:   9% (71/787)
+deploy	Checkout	2026-02-11T18:07:18.8012367Z Receiving objects:  10% (79/787)
+deploy	Checkout	2026-02-11T18:07:18.8042601Z Receiving objects:  11% (87/787)
+deploy	Checkout	2026-02-11T18:07:18.8142166Z Receiving objects:  12% (95/787)
+deploy	Checkout	2026-02-11T18:07:18.8162142Z Receiving objects:  13% (103/787)
+deploy	Checkout	2026-02-11T18:07:18.8166482Z Receiving objects:  14% (111/787)
+deploy	Checkout	2026-02-11T18:07:18.8168742Z Receiving objects:  15% (119/787)
+deploy	Checkout	2026-02-11T18:07:18.8170992Z Receiving objects:  16% (126/787)
+deploy	Checkout	2026-02-11T18:07:18.8176486Z Receiving objects:  17% (134/787)
+deploy	Checkout	2026-02-11T18:07:18.8178915Z Receiving objects:  18% (142/787)
+deploy	Checkout	2026-02-11T18:07:18.8181037Z Receiving objects:  19% (150/787)
+deploy	Checkout	2026-02-11T18:07:18.8196020Z Receiving objects:  20% (158/787)
+deploy	Checkout	2026-02-11T18:07:18.8198231Z Receiving objects:  21% (166/787)
+deploy	Checkout	2026-02-11T18:07:18.8208816Z Receiving objects:  22% (174/787)
+deploy	Checkout	2026-02-11T18:07:18.8278923Z Receiving objects:  23% (182/787)
+deploy	Checkout	2026-02-11T18:07:18.8316480Z Receiving objects:  24% (189/787)
+deploy	Checkout	2026-02-11T18:07:18.8318707Z Receiving objects:  25% (197/787)
+deploy	Checkout	2026-02-11T18:07:18.8337944Z Receiving objects:  26% (205/787)
+deploy	Checkout	2026-02-11T18:07:18.8443786Z Receiving objects:  27% (213/787)
+deploy	Checkout	2026-02-11T18:07:18.8556942Z Receiving objects:  28% (221/787)
+deploy	Checkout	2026-02-11T18:07:18.8604782Z Receiving objects:  29% (229/787)
+deploy	Checkout	2026-02-11T18:07:18.8626045Z Receiving objects:  30% (237/787)
+deploy	Checkout	2026-02-11T18:07:18.8710461Z Receiving objects:  31% (244/787)
+deploy	Checkout	2026-02-11T18:07:18.8717097Z Receiving objects:  32% (252/787)
+deploy	Checkout	2026-02-11T18:07:18.8760727Z Receiving objects:  33% (260/787)
+deploy	Checkout	2026-02-11T18:07:18.8780492Z Receiving objects:  34% (268/787)
+deploy	Checkout	2026-02-11T18:07:18.8784602Z Receiving objects:  35% (276/787)
+deploy	Checkout	2026-02-11T18:07:18.8806524Z Receiving objects:  36% (284/787)
+deploy	Checkout	2026-02-11T18:07:18.8865864Z Receiving objects:  37% (292/787)
+deploy	Checkout	2026-02-11T18:07:18.8868917Z Receiving objects:  38% (300/787)
+deploy	Checkout	2026-02-11T18:07:18.8872645Z Receiving objects:  39% (307/787)
+deploy	Checkout	2026-02-11T18:07:18.8874870Z Receiving objects:  40% (315/787)
+deploy	Checkout	2026-02-11T18:07:18.8877274Z Receiving objects:  41% (323/787)
+deploy	Checkout	2026-02-11T18:07:18.8881084Z Receiving objects:  42% (331/787)
+deploy	Checkout	2026-02-11T18:07:18.8913858Z Receiving objects:  43% (339/787)
+deploy	Checkout	2026-02-11T18:07:18.8916134Z Receiving objects:  44% (347/787)
+deploy	Checkout	2026-02-11T18:07:18.8920217Z Receiving objects:  45% (355/787)
+deploy	Checkout	2026-02-11T18:07:18.8936071Z Receiving objects:  46% (363/787)
+deploy	Checkout	2026-02-11T18:07:18.8938224Z Receiving objects:  47% (370/787)
+deploy	Checkout	2026-02-11T18:07:18.8940287Z Receiving objects:  48% (378/787)
+deploy	Checkout	2026-02-11T18:07:18.8949960Z Receiving objects:  49% (386/787)
+deploy	Checkout	2026-02-11T18:07:18.8951552Z Receiving objects:  50% (394/787)
+deploy	Checkout	2026-02-11T18:07:18.9021537Z Receiving objects:  51% (402/787)
+deploy	Checkout	2026-02-11T18:07:18.9024121Z Receiving objects:  52% (410/787)
+deploy	Checkout	2026-02-11T18:07:18.9026353Z Receiving objects:  53% (418/787)
+deploy	Checkout	2026-02-11T18:07:18.9028729Z Receiving objects:  54% (425/787)
+deploy	Checkout	2026-02-11T18:07:18.9034555Z Receiving objects:  55% (433/787)
+deploy	Checkout	2026-02-11T18:07:18.9050726Z Receiving objects:  56% (441/787)
+deploy	Checkout	2026-02-11T18:07:18.9053778Z Receiving objects:  57% (449/787)
+deploy	Checkout	2026-02-11T18:07:18.9069827Z Receiving objects:  58% (457/787)
+deploy	Checkout	2026-02-11T18:07:18.9087075Z Receiving objects:  59% (465/787)
+deploy	Checkout	2026-02-11T18:07:18.9094610Z Receiving objects:  60% (473/787)
+deploy	Checkout	2026-02-11T18:07:18.9105205Z Receiving objects:  61% (481/787)
+deploy	Checkout	2026-02-11T18:07:18.9177948Z Receiving objects:  62% (488/787)
+deploy	Checkout	2026-02-11T18:07:18.9179950Z Receiving objects:  63% (496/787)
+deploy	Checkout	2026-02-11T18:07:18.9182097Z Receiving objects:  64% (504/787)
+deploy	Checkout	2026-02-11T18:07:18.9185601Z Receiving objects:  65% (512/787)
+deploy	Checkout	2026-02-11T18:07:18.9188760Z Receiving objects:  66% (520/787)
+deploy	Checkout	2026-02-11T18:07:18.9206660Z Receiving objects:  67% (528/787)
+deploy	Checkout	2026-02-11T18:07:18.9208305Z Receiving objects:  68% (536/787)
+deploy	Checkout	2026-02-11T18:07:18.9215739Z Receiving objects:  69% (544/787)
+deploy	Checkout	2026-02-11T18:07:18.9218517Z Receiving objects:  70% (551/787)
+deploy	Checkout	2026-02-11T18:07:18.9228075Z Receiving objects:  71% (559/787)
+deploy	Checkout	2026-02-11T18:07:18.9242859Z Receiving objects:  72% (567/787)
+deploy	Checkout	2026-02-11T18:07:18.9247880Z Receiving objects:  73% (575/787)
+deploy	Checkout	2026-02-11T18:07:18.9249880Z Receiving objects:  74% (583/787)
+deploy	Checkout	2026-02-11T18:07:18.9258865Z Receiving objects:  75% (591/787)
+deploy	Checkout	2026-02-11T18:07:18.9329578Z Receiving objects:  76% (599/787)
+deploy	Checkout	2026-02-11T18:07:18.9334002Z Receiving objects:  77% (606/787)
+deploy	Checkout	2026-02-11T18:07:18.9338410Z Receiving objects:  78% (614/787)
+deploy	Checkout	2026-02-11T18:07:18.9342128Z Receiving objects:  79% (622/787)
+deploy	Checkout	2026-02-11T18:07:18.9343926Z Receiving objects:  80% (630/787)
+deploy	Checkout	2026-02-11T18:07:18.9345733Z Receiving objects:  81% (638/787)
+deploy	Checkout	2026-02-11T18:07:18.9361158Z Receiving objects:  82% (646/787)
+deploy	Checkout	2026-02-11T18:07:18.9363602Z Receiving objects:  83% (654/787)
+deploy	Checkout	2026-02-11T18:07:18.9365228Z Receiving objects:  84% (662/787)
+deploy	Checkout	2026-02-11T18:07:18.9376638Z Receiving objects:  85% (669/787)
+deploy	Checkout	2026-02-11T18:07:18.9379880Z Receiving objects:  86% (677/787)
+deploy	Checkout	2026-02-11T18:07:18.9382035Z Receiving objects:  87% (685/787)
+deploy	Checkout	2026-02-11T18:07:18.9384374Z Receiving objects:  88% (693/787)
+deploy	Checkout	2026-02-11T18:07:18.9386533Z Receiving objects:  89% (701/787)
+deploy	Checkout	2026-02-11T18:07:18.9388576Z Receiving objects:  90% (709/787)
+deploy	Checkout	2026-02-11T18:07:18.9397235Z Receiving objects:  91% (717/787)
+deploy	Checkout	2026-02-11T18:07:18.9399421Z Receiving objects:  92% (725/787)
+deploy	Checkout	2026-02-11T18:07:18.9400913Z Receiving objects:  93% (732/787)
+deploy	Checkout	2026-02-11T18:07:18.9402735Z Receiving objects:  94% (740/787)
+deploy	Checkout	2026-02-11T18:07:18.9412180Z Receiving objects:  95% (748/787)
+deploy	Checkout	2026-02-11T18:07:18.9414058Z Receiving objects:  96% (756/787)
+deploy	Checkout	2026-02-11T18:07:18.9499571Z Receiving objects:  97% (764/787)
+deploy	Checkout	2026-02-11T18:07:18.9502074Z Receiving objects:  98% (772/787)
+deploy	Checkout	2026-02-11T18:07:18.9514303Z Receiving objects:  99% (780/787)
+deploy	Checkout	2026-02-11T18:07:18.9516957Z remote: Total 787 (delta 247), reused 283 (delta 38), pack-reused 0 (from 0)        
+deploy	Checkout	2026-02-11T18:07:18.9519718Z Receiving objects: 100% (787/787)
+deploy	Checkout	2026-02-11T18:07:18.9521997Z Receiving objects: 100% (787/787), 1.03 MiB | 6.26 MiB/s, done.
+deploy	Checkout	2026-02-11T18:07:18.9524642Z Resolving deltas:   0% (0/247)
+deploy	Checkout	2026-02-11T18:07:18.9526562Z Resolving deltas:   1% (3/247)
+deploy	Checkout	2026-02-11T18:07:18.9528508Z Resolving deltas:   2% (5/247)
+deploy	Checkout	2026-02-11T18:07:18.9530379Z Resolving deltas:   3% (8/247)
+deploy	Checkout	2026-02-11T18:07:18.9532365Z Resolving deltas:   4% (10/247)
+deploy	Checkout	2026-02-11T18:07:18.9534485Z Resolving deltas:   5% (13/247)
+deploy	Checkout	2026-02-11T18:07:18.9536450Z Resolving deltas:   6% (15/247)
+deploy	Checkout	2026-02-11T18:07:18.9538344Z Resolving deltas:   7% (18/247)
+deploy	Checkout	2026-02-11T18:07:18.9543513Z Resolving deltas:   8% (20/247)
+deploy	Checkout	2026-02-11T18:07:18.9548912Z Resolving deltas:   9% (23/247)
+deploy	Checkout	2026-02-11T18:07:18.9554467Z Resolving deltas:  10% (25/247)
+deploy	Checkout	2026-02-11T18:07:18.9556901Z Resolving deltas:  11% (28/247)
+deploy	Checkout	2026-02-11T18:07:18.9561374Z Resolving deltas:  12% (30/247)
+deploy	Checkout	2026-02-11T18:07:18.9568008Z Resolving deltas:  13% (33/247)
+deploy	Checkout	2026-02-11T18:07:18.9571095Z Resolving deltas:  14% (35/247)
+deploy	Checkout	2026-02-11T18:07:18.9575797Z Resolving deltas:  15% (38/247)
+deploy	Checkout	2026-02-11T18:07:18.9583951Z Resolving deltas:  16% (40/247)
+deploy	Checkout	2026-02-11T18:07:18.9586837Z Resolving deltas:  17% (42/247)
+deploy	Checkout	2026-02-11T18:07:18.9590217Z Resolving deltas:  18% (45/247)
+deploy	Checkout	2026-02-11T18:07:18.9595688Z Resolving deltas:  19% (47/247)
+deploy	Checkout	2026-02-11T18:07:18.9597827Z Resolving deltas:  20% (50/247)
+deploy	Checkout	2026-02-11T18:07:18.9599886Z Resolving deltas:  21% (52/247)
+deploy	Checkout	2026-02-11T18:07:18.9602216Z Resolving deltas:  22% (55/247)
+deploy	Checkout	2026-02-11T18:07:18.9604455Z Resolving deltas:  23% (57/247)
+deploy	Checkout	2026-02-11T18:07:18.9606532Z Resolving deltas:  24% (60/247)
+deploy	Checkout	2026-02-11T18:07:18.9608598Z Resolving deltas:  25% (62/247)
+deploy	Checkout	2026-02-11T18:07:18.9610663Z Resolving deltas:  26% (65/247)
+deploy	Checkout	2026-02-11T18:07:18.9612661Z Resolving deltas:  27% (67/247)
+deploy	Checkout	2026-02-11T18:07:18.9614834Z Resolving deltas:  28% (70/247)
+deploy	Checkout	2026-02-11T18:07:18.9616810Z Resolving deltas:  29% (72/247)
+deploy	Checkout	2026-02-11T18:07:18.9618855Z Resolving deltas:  30% (75/247)
+deploy	Checkout	2026-02-11T18:07:18.9620422Z Resolving deltas:  31% (77/247)
+deploy	Checkout	2026-02-11T18:07:18.9621867Z Resolving deltas:  32% (80/247)
+deploy	Checkout	2026-02-11T18:07:18.9624097Z Resolving deltas:  33% (82/247)
+deploy	Checkout	2026-02-11T18:07:18.9626105Z Resolving deltas:  34% (84/247)
+deploy	Checkout	2026-02-11T18:07:18.9628112Z Resolving deltas:  35% (88/247)
+deploy	Checkout	2026-02-11T18:07:18.9629715Z Resolving deltas:  36% (89/247)
+deploy	Checkout	2026-02-11T18:07:18.9631709Z Resolving deltas:  37% (92/247)
+deploy	Checkout	2026-02-11T18:07:18.9633875Z Resolving deltas:  38% (94/247)
+deploy	Checkout	2026-02-11T18:07:18.9635972Z Resolving deltas:  39% (97/247)
+deploy	Checkout	2026-02-11T18:07:18.9637886Z Resolving deltas:  40% (99/247)
+deploy	Checkout	2026-02-11T18:07:18.9639835Z Resolving deltas:  42% (104/247)
+deploy	Checkout	2026-02-11T18:07:18.9641847Z Resolving deltas:  43% (108/247)
+deploy	Checkout	2026-02-11T18:07:18.9643946Z Resolving deltas:  44% (109/247)
+deploy	Checkout	2026-02-11T18:07:18.9646009Z Resolving deltas:  45% (112/247)
+deploy	Checkout	2026-02-11T18:07:18.9648107Z Resolving deltas:  46% (114/247)
+deploy	Checkout	2026-02-11T18:07:18.9650222Z Resolving deltas:  47% (117/247)
+deploy	Checkout	2026-02-11T18:07:18.9652344Z Resolving deltas:  48% (119/247)
+deploy	Checkout	2026-02-11T18:07:18.9654681Z Resolving deltas:  49% (122/247)
+deploy	Checkout	2026-02-11T18:07:18.9656758Z Resolving deltas:  50% (124/247)
+deploy	Checkout	2026-02-11T18:07:18.9658322Z Resolving deltas:  51% (126/247)
+deploy	Checkout	2026-02-11T18:07:18.9659573Z Resolving deltas:  52% (129/247)
+deploy	Checkout	2026-02-11T18:07:18.9661046Z Resolving deltas:  53% (131/247)
+deploy	Checkout	2026-02-11T18:07:18.9662533Z Resolving deltas:  54% (134/247)
+deploy	Checkout	2026-02-11T18:07:18.9664543Z Resolving deltas:  55% (136/247)
+deploy	Checkout	2026-02-11T18:07:18.9666618Z Resolving deltas:  56% (139/247)
+deploy	Checkout	2026-02-11T18:07:18.9668608Z Resolving deltas:  57% (141/247)
+deploy	Checkout	2026-02-11T18:07:18.9670608Z Resolving deltas:  58% (144/247)
+deploy	Checkout	2026-02-11T18:07:18.9672622Z Resolving deltas:  59% (146/247)
+deploy	Checkout	2026-02-11T18:07:18.9674801Z Resolving deltas:  60% (149/247)
+deploy	Checkout	2026-02-11T18:07:18.9676824Z Resolving deltas:  61% (152/247)
+deploy	Checkout	2026-02-11T18:07:18.9678240Z Resolving deltas:  62% (154/247)
+deploy	Checkout	2026-02-11T18:07:18.9679480Z Resolving deltas:  63% (157/247)
+deploy	Checkout	2026-02-11T18:07:18.9680697Z Resolving deltas:  64% (159/247)
+deploy	Checkout	2026-02-11T18:07:18.9681910Z Resolving deltas:  65% (161/247)
+deploy	Checkout	2026-02-11T18:07:18.9684937Z Resolving deltas:  66% (164/247)
+deploy	Checkout	2026-02-11T18:07:18.9686477Z Resolving deltas:  67% (166/247)
+deploy	Checkout	2026-02-11T18:07:18.9688591Z Resolving deltas:  68% (168/247)
+deploy	Checkout	2026-02-11T18:07:18.9690461Z Resolving deltas:  69% (171/247)
+deploy	Checkout	2026-02-11T18:07:18.9691898Z Resolving deltas:  70% (173/247)
+deploy	Checkout	2026-02-11T18:07:18.9693969Z Resolving deltas:  71% (176/247)
+deploy	Checkout	2026-02-11T18:07:18.9695514Z Resolving deltas:  72% (178/247)
+deploy	Checkout	2026-02-11T18:07:18.9697306Z Resolving deltas:  73% (181/247)
+deploy	Checkout	2026-02-11T18:07:18.9699003Z Resolving deltas:  74% (183/247)
+deploy	Checkout	2026-02-11T18:07:18.9700465Z Resolving deltas:  75% (186/247)
+deploy	Checkout	2026-02-11T18:07:18.9701794Z Resolving deltas:  76% (188/247)
+deploy	Checkout	2026-02-11T18:07:18.9703022Z Resolving deltas:  77% (191/247)
+deploy	Checkout	2026-02-11T18:07:18.9704670Z Resolving deltas:  78% (193/247)
+deploy	Checkout	2026-02-11T18:07:18.9705993Z Resolving deltas:  79% (196/247)
+deploy	Checkout	2026-02-11T18:07:18.9707215Z Resolving deltas:  80% (198/247)
+deploy	Checkout	2026-02-11T18:07:18.9708673Z Resolving deltas:  81% (201/247)
+deploy	Checkout	2026-02-11T18:07:18.9710427Z Resolving deltas:  82% (203/247)
+deploy	Checkout	2026-02-11T18:07:18.9711867Z Resolving deltas:  83% (207/247)
+deploy	Checkout	2026-02-11T18:07:18.9713320Z Resolving deltas:  84% (208/247)
+deploy	Checkout	2026-02-11T18:07:18.9714839Z Resolving deltas:  85% (210/247)
+deploy	Checkout	2026-02-11T18:07:18.9716254Z Resolving deltas:  86% (213/247)
+deploy	Checkout	2026-02-11T18:07:18.9717482Z Resolving deltas:  87% (215/247)
+deploy	Checkout	2026-02-11T18:07:18.9719111Z Resolving deltas:  88% (218/247)
+deploy	Checkout	2026-02-11T18:07:18.9721349Z Resolving deltas:  89% (220/247)
+deploy	Checkout	2026-02-11T18:07:18.9722737Z Resolving deltas:  90% (223/247)
+deploy	Checkout	2026-02-11T18:07:18.9724246Z Resolving deltas:  91% (225/247)
+deploy	Checkout	2026-02-11T18:07:18.9725902Z Resolving deltas:  92% (228/247)
+deploy	Checkout	2026-02-11T18:07:18.9727702Z Resolving deltas:  93% (230/247)
+deploy	Checkout	2026-02-11T18:07:18.9729566Z Resolving deltas:  94% (233/247)
+deploy	Checkout	2026-02-11T18:07:18.9731604Z Resolving deltas:  95% (235/247)
+deploy	Checkout	2026-02-11T18:07:18.9733857Z Resolving deltas:  96% (238/247)
+deploy	Checkout	2026-02-11T18:07:18.9755343Z Resolving deltas:  97% (240/247)
+deploy	Checkout	2026-02-11T18:07:18.9757539Z Resolving deltas:  98% (243/247)
+deploy	Checkout	2026-02-11T18:07:18.9759661Z Resolving deltas:  99% (245/247)
+deploy	Checkout	2026-02-11T18:07:18.9761284Z Resolving deltas: 100% (247/247)
+deploy	Checkout	2026-02-11T18:07:18.9763443Z Resolving deltas: 100% (247/247), done.
+deploy	Checkout	2026-02-11T18:07:18.9765650Z From https://github.com/univesp/belenios
+deploy	Checkout	2026-02-11T18:07:18.9768725Z  * [new ref]         f12a18470be7edf474e264f2cef2f3ec4e7b0c13 -> origin/master
+deploy	Checkout	2026-02-11T18:07:18.9793702Z ##[endgroup]
+deploy	Checkout	2026-02-11T18:07:18.9795711Z ##[group]Determining the checkout info
+deploy	Checkout	2026-02-11T18:07:18.9797630Z ##[endgroup]
+deploy	Checkout	2026-02-11T18:07:18.9799605Z ##[group]Checking out the ref
+deploy	Checkout	2026-02-11T18:07:18.9801431Z [command]/usr/bin/git checkout --progress --force -B master refs/remotes/origin/master
+deploy	Checkout	2026-02-11T18:07:19.0261970Z Reset branch 'master'
+deploy	Checkout	2026-02-11T18:07:19.0265136Z branch 'master' set up to track 'origin/master'.
+deploy	Checkout	2026-02-11T18:07:19.0275161Z ##[endgroup]
+deploy	Checkout	2026-02-11T18:07:19.0307198Z [command]/usr/bin/git log -1 --format='%H'
+deploy	Checkout	2026-02-11T18:07:19.0327463Z 'f12a18470be7edf474e264f2cef2f3ec4e7b0c13'
+deploy	Google Auth	﻿2026-02-11T18:07:19.0658176Z ##[group]Run google-github-actions/auth@v1
+deploy	Google Auth	2026-02-11T18:07:19.0659522Z with:
+deploy	Google Auth	2026-02-11T18:07:19.0692241Z   credentials_json: ***
+deploy	Google Auth	2026-02-11T18:07:19.0693567Z   create_credentials_file: true
+deploy	Google Auth	2026-02-11T18:07:19.0695003Z   export_environment_variables: true
+deploy	Google Auth	2026-02-11T18:07:19.0696257Z   cleanup_credentials: true
+deploy	Google Auth	2026-02-11T18:07:19.0697411Z   access_token_lifetime: 3600s
+deploy	Google Auth	2026-02-11T18:07:19.0698916Z   access_token_scopes: https://www.googleapis.com/auth/cloud-platform
+deploy	Google Auth	2026-02-11T18:07:19.0700470Z   retries: 3
+deploy	Google Auth	2026-02-11T18:07:19.0701438Z   backoff: 250
+deploy	Google Auth	2026-02-11T18:07:19.0702461Z   id_token_include_email: false
+deploy	Google Auth	2026-02-11T18:07:19.0703715Z env:
+deploy	Google Auth	2026-02-11T18:07:19.0704661Z   SERVICE_NAME: belenios
+deploy	Google Auth	2026-02-11T18:07:19.0705759Z   IMAGE_NAME: belenios
+deploy	Google Auth	2026-02-11T18:07:19.0706854Z   REGION: southamerica-east1
+deploy	Google Auth	2026-02-11T18:07:19.0707986Z ##[endgroup]
+deploy	Google Auth	2026-02-11T18:07:19.1567307Z Created credentials file at "/home/runner/work/belenios/belenios/gha-creds-6e5a94a504aa5af2.json"
+deploy	Set up Cloud SDK	﻿2026-02-11T18:07:19.1747255Z ##[group]Run google-github-actions/setup-gcloud@v1
+deploy	Set up Cloud SDK	2026-02-11T18:07:19.1748657Z with:
+deploy	Set up Cloud SDK	2026-02-11T18:07:19.1749609Z   skip_install: false
+deploy	Set up Cloud SDK	2026-02-11T18:07:19.1750660Z   version: latest
+deploy	Set up Cloud SDK	2026-02-11T18:07:19.1751658Z env:
+deploy	Set up Cloud SDK	2026-02-11T18:07:19.1752623Z   SERVICE_NAME: belenios
+deploy	Set up Cloud SDK	2026-02-11T18:07:19.1753901Z   IMAGE_NAME: belenios
+deploy	Set up Cloud SDK	2026-02-11T18:07:19.1754993Z   REGION: southamerica-east1
+deploy	Set up Cloud SDK	2026-02-11T18:07:19.1756929Z   CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE: /home/runner/work/belenios/belenios/gha-creds-6e5a94a504aa5af2.json
+deploy	Set up Cloud SDK	2026-02-11T18:07:19.1759687Z   GOOGLE_APPLICATION_CREDENTIALS: /home/runner/work/belenios/belenios/gha-creds-6e5a94a504aa5af2.json
+deploy	Set up Cloud SDK	2026-02-11T18:07:19.1762436Z   GOOGLE_GHA_CREDS_PATH: /home/runner/work/belenios/belenios/gha-creds-6e5a94a504aa5af2.json
+deploy	Set up Cloud SDK	2026-02-11T18:07:19.1764531Z   CLOUDSDK_CORE_PROJECT: ***
+deploy	Set up Cloud SDK	2026-02-11T18:07:19.1765746Z   CLOUDSDK_PROJECT: ***
+deploy	Set up Cloud SDK	2026-02-11T18:07:19.1766878Z   GCLOUD_PROJECT: ***
+deploy	Set up Cloud SDK	2026-02-11T18:07:19.1767969Z   GCP_PROJECT: ***
+deploy	Set up Cloud SDK	2026-02-11T18:07:19.1769059Z   GOOGLE_CLOUD_PROJECT: ***
+deploy	Set up Cloud SDK	2026-02-11T18:07:19.1770199Z ##[endgroup]
+deploy	Set up Cloud SDK	2026-02-11T18:07:20.5890460Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/6e62929f-0ba7-41dd-9d20-5e7fbe10a970 -f /home/runner/work/_temp/75309df7-0145-44aa-8cb4-c422a76dff86
+deploy	Set up Cloud SDK	2026-02-11T18:07:40.5558615Z Successfully authenticated
+deploy	Configure Docker	﻿2026-02-11T18:07:40.5725663Z ##[group]Run gcloud auth configure-docker gcr.io --quiet
+deploy	Configure Docker	2026-02-11T18:07:40.5726275Z [36;1mgcloud auth configure-docker gcr.io --quiet[0m
+deploy	Configure Docker	2026-02-11T18:07:40.5764467Z shell: /usr/bin/bash -e ***0***
+deploy	Configure Docker	2026-02-11T18:07:40.5764840Z env:
+deploy	Configure Docker	2026-02-11T18:07:40.5765106Z   SERVICE_NAME: belenios
+deploy	Configure Docker	2026-02-11T18:07:40.5765413Z   IMAGE_NAME: belenios
+deploy	Configure Docker	2026-02-11T18:07:40.5765709Z   REGION: southamerica-east1
+deploy	Configure Docker	2026-02-11T18:07:40.5766275Z   CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE: /home/runner/work/belenios/belenios/gha-creds-6e5a94a504aa5af2.json
+deploy	Configure Docker	2026-02-11T18:07:40.5767077Z   GOOGLE_APPLICATION_CREDENTIALS: /home/runner/work/belenios/belenios/gha-creds-6e5a94a504aa5af2.json
+deploy	Configure Docker	2026-02-11T18:07:40.5767808Z   GOOGLE_GHA_CREDS_PATH: /home/runner/work/belenios/belenios/gha-creds-6e5a94a504aa5af2.json
+deploy	Configure Docker	2026-02-11T18:07:40.5768355Z   CLOUDSDK_CORE_PROJECT: ***
+deploy	Configure Docker	2026-02-11T18:07:40.5768700Z   CLOUDSDK_PROJECT: ***
+deploy	Configure Docker	2026-02-11T18:07:40.5769049Z   GCLOUD_PROJECT: ***
+deploy	Configure Docker	2026-02-11T18:07:40.5769386Z   GCP_PROJECT: ***
+deploy	Configure Docker	2026-02-11T18:07:40.5769742Z   GOOGLE_CLOUD_PROJECT: ***
+deploy	Configure Docker	2026-02-11T18:07:40.5770119Z   CLOUDSDK_METRICS_ENVIRONMENT: github-actions-setup-gcloud
+deploy	Configure Docker	2026-02-11T18:07:40.5770558Z   CLOUDSDK_METRICS_ENVIRONMENT_VERSION: 1.1.1
+deploy	Configure Docker	2026-02-11T18:07:40.5770905Z ##[endgroup]
+deploy	Configure Docker	2026-02-11T18:07:41.0706004Z Adding credentials for: gcr.io
+deploy	Configure Docker	2026-02-11T18:07:41.0888346Z Docker configuration file updated.
+deploy	Build and Push Container	﻿2026-02-11T18:07:41.1932706Z ##[group]Run docker build -f cloudrun/Dockerfile -t gcr.io/***/belenios:f12a18470be7edf474e264f2cef2f3ec4e7b0c13 .
+deploy	Build and Push Container	2026-02-11T18:07:41.1934067Z [36;1mdocker build -f cloudrun/Dockerfile -t gcr.io/***/belenios:f12a18470be7edf474e264f2cef2f3ec4e7b0c13 .[0m
+deploy	Build and Push Container	2026-02-11T18:07:41.1934843Z [36;1mdocker push gcr.io/***/belenios:f12a18470be7edf474e264f2cef2f3ec4e7b0c13[0m
+deploy	Build and Push Container	2026-02-11T18:07:41.1935702Z [36;1mdocker tag gcr.io/***/belenios:f12a18470be7edf474e264f2cef2f3ec4e7b0c13 gcr.io/***/belenios:latest[0m
+deploy	Build and Push Container	2026-02-11T18:07:41.1936567Z [36;1mdocker push gcr.io/***/belenios:latest[0m
+deploy	Build and Push Container	2026-02-11T18:07:41.1968354Z shell: /usr/bin/bash -e ***0***
+deploy	Build and Push Container	2026-02-11T18:07:41.1968703Z env:
+deploy	Build and Push Container	2026-02-11T18:07:41.1968996Z   SERVICE_NAME: belenios
+deploy	Build and Push Container	2026-02-11T18:07:41.1969327Z   IMAGE_NAME: belenios
+deploy	Build and Push Container	2026-02-11T18:07:41.1969621Z   REGION: southamerica-east1
+deploy	Build and Push Container	2026-02-11T18:07:41.1970191Z   CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE: /home/runner/work/belenios/belenios/gha-creds-6e5a94a504aa5af2.json
+deploy	Build and Push Container	2026-02-11T18:07:41.1970999Z   GOOGLE_APPLICATION_CREDENTIALS: /home/runner/work/belenios/belenios/gha-creds-6e5a94a504aa5af2.json
+deploy	Build and Push Container	2026-02-11T18:07:41.1971795Z   GOOGLE_GHA_CREDS_PATH: /home/runner/work/belenios/belenios/gha-creds-6e5a94a504aa5af2.json
+deploy	Build and Push Container	2026-02-11T18:07:41.1972357Z   CLOUDSDK_CORE_PROJECT: ***
+deploy	Build and Push Container	2026-02-11T18:07:41.1972691Z   CLOUDSDK_PROJECT: ***
+deploy	Build and Push Container	2026-02-11T18:07:41.1973005Z   GCLOUD_PROJECT: ***
+deploy	Build and Push Container	2026-02-11T18:07:41.1973545Z   GCP_PROJECT: ***
+deploy	Build and Push Container	2026-02-11T18:07:41.1973850Z   GOOGLE_CLOUD_PROJECT: ***
+deploy	Build and Push Container	2026-02-11T18:07:41.1974244Z   CLOUDSDK_METRICS_ENVIRONMENT: github-actions-setup-gcloud
+deploy	Build and Push Container	2026-02-11T18:07:41.1974693Z   CLOUDSDK_METRICS_ENVIRONMENT_VERSION: 1.1.1
+deploy	Build and Push Container	2026-02-11T18:07:41.1975047Z ##[endgroup]
+deploy	Build and Push Container	2026-02-11T18:07:41.7670950Z #0 building with "default" instance using docker driver
+deploy	Build and Push Container	2026-02-11T18:07:41.7671765Z 
+deploy	Build and Push Container	2026-02-11T18:07:41.7672061Z #1 [internal] load build definition from Dockerfile
+deploy	Build and Push Container	2026-02-11T18:07:41.7672817Z #1 transferring dockerfile: 1.34kB done
+deploy	Build and Push Container	2026-02-11T18:07:41.7673626Z #1 DONE 0.0s
+deploy	Build and Push Container	2026-02-11T18:07:41.7673845Z 
+deploy	Build and Push Container	2026-02-11T18:07:41.7674137Z #2 [auth] glondu/beleniosbase:pull token for registry-1.docker.io
+deploy	Build and Push Container	2026-02-11T18:07:41.7674600Z #2 DONE 0.0s
+deploy	Build and Push Container	2026-02-11T18:07:41.7674758Z 
+deploy	Build and Push Container	2026-02-11T18:07:41.7675012Z #3 [internal] load metadata for docker.io/glondu/beleniosbase:20260106-1
+deploy	Build and Push Container	2026-02-11T18:07:41.9948015Z #3 DONE 0.5s
+deploy	Build and Push Container	2026-02-11T18:07:42.1183851Z 
+deploy	Build and Push Container	2026-02-11T18:07:42.1184921Z #4 [internal] load .dockerignore
+deploy	Build and Push Container	2026-02-11T18:07:42.1204084Z #4 transferring context: 166B done
+deploy	Build and Push Container	2026-02-11T18:07:42.1205086Z #4 DONE 0.0s
+deploy	Build and Push Container	2026-02-11T18:07:42.1205625Z 
+deploy	Build and Push Container	2026-02-11T18:07:42.1209718Z #5 [ 1/11] FROM docker.io/glondu/beleniosbase:20260106-1@sha256:5db7b60787ac525231602d5823902b4bd2ddb5bd3e763a061f9cc19648543b0d
+deploy	Build and Push Container	2026-02-11T18:07:42.1212661Z #5 resolve docker.io/glondu/beleniosbase:20260106-1@sha256:5db7b60787ac525231602d5823902b4bd2ddb5bd3e763a061f9cc19648543b0d done
+deploy	Build and Push Container	2026-02-11T18:07:42.1214400Z #5 sha256:5db7b60787ac525231602d5823902b4bd2ddb5bd3e763a061f9cc19648543b0d 1.79kB / 1.79kB done
+deploy	Build and Push Container	2026-02-11T18:07:42.1215645Z #5 sha256:281b80c799ded5b9a390d2e8c59930db01ee395ab809dd34259897c660751f4e 3.15MB / 49.29MB 0.1s
+deploy	Build and Push Container	2026-02-11T18:07:42.1216978Z #5 sha256:3adf6c78c02ea816b9e6f0f76ba8ec4540b5ad52f6e25f4e8cd61d2aa86f715f 0B / 3.37kB 0.1s
+deploy	Build and Push Container	2026-02-11T18:07:42.1218319Z #5 sha256:3350ca7f5b0816a6238b123078aaf4a7de1435790c027df4af8337e59f8c93a2 2.41kB / 2.41kB done
+deploy	Build and Push Container	2026-02-11T18:07:42.1219607Z #5 sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2 0B / 435.16MB 0.1s
+deploy	Build and Push Container	2026-02-11T18:07:42.3117947Z #5 ...
+deploy	Build and Push Container	2026-02-11T18:07:42.3118352Z 
+deploy	Build and Push Container	2026-02-11T18:07:42.3118757Z #6 [internal] load build context
+deploy	Build and Push Container	2026-02-11T18:07:42.3135526Z #6 transferring context: 5.37MB 0.1s done
+deploy	Build and Push Container	2026-02-11T18:07:42.3137003Z #6 DONE 0.1s
+deploy	Build and Push Container	2026-02-11T18:07:42.3138184Z 
+deploy	Build and Push Container	2026-02-11T18:07:42.3139434Z #5 [ 1/11] FROM docker.io/glondu/beleniosbase:20260106-1@sha256:5db7b60787ac525231602d5823902b4bd2ddb5bd3e763a061f9cc19648543b0d
+deploy	Build and Push Container	2026-02-11T18:07:42.3140840Z #5 sha256:281b80c799ded5b9a390d2e8c59930db01ee395ab809dd34259897c660751f4e 19.92MB / 49.29MB 0.3s
+deploy	Build and Push Container	2026-02-11T18:07:42.3143589Z #5 sha256:3adf6c78c02ea816b9e6f0f76ba8ec4540b5ad52f6e25f4e8cd61d2aa86f715f 3.37kB / 3.37kB 0.1s done
+deploy	Build and Push Container	2026-02-11T18:07:42.3145316Z #5 sha256:b05e0b4b5e342f753ac6a44ed12d58b400ef4e2636231e5719fd129cfbad9148 1.65kB / 1.65kB 0.2s done
+deploy	Build and Push Container	2026-02-11T18:07:42.3147127Z #5 sha256:96721510810e660833d7266fc77c7377676bbc3d5164fd5855d3e3b281262752 0B / 50.43kB 0.3s
+deploy	Build and Push Container	2026-02-11T18:07:42.5117919Z #5 sha256:281b80c799ded5b9a390d2e8c59930db01ee395ab809dd34259897c660751f4e 49.29MB / 49.29MB 0.5s done
+deploy	Build and Push Container	2026-02-11T18:07:42.5120791Z #5 sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2 36.70MB / 435.16MB 0.5s
+deploy	Build and Push Container	2026-02-11T18:07:42.5122841Z #5 sha256:96721510810e660833d7266fc77c7377676bbc3d5164fd5855d3e3b281262752 50.43kB / 50.43kB 0.3s done
+deploy	Build and Push Container	2026-02-11T18:07:42.5124686Z #5 sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 32B / 32B 0.4s done
+deploy	Build and Push Container	2026-02-11T18:07:42.5126221Z #5 sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 3.15MB / 1.53GB 0.5s
+deploy	Build and Push Container	2026-02-11T18:07:42.6123545Z #5 extracting sha256:281b80c799ded5b9a390d2e8c59930db01ee395ab809dd34259897c660751f4e
+deploy	Build and Push Container	2026-02-11T18:07:42.8801626Z #5 sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2 73.40MB / 435.16MB 0.8s
+deploy	Build and Push Container	2026-02-11T18:07:43.1117196Z #5 sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2 105.91MB / 435.16MB 1.1s
+deploy	Build and Push Container	2026-02-11T18:07:43.7116030Z #5 sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2 142.61MB / 435.16MB 1.7s
+deploy	Build and Push Container	2026-02-11T18:07:43.7117516Z #5 sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 85.95MB / 1.53GB 1.7s
+deploy	Build and Push Container	2026-02-11T18:07:43.9117264Z #5 sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2 165.68MB / 435.16MB 1.9s
+deploy	Build and Push Container	2026-02-11T18:07:44.1117874Z #5 sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2 193.99MB / 435.16MB 2.1s
+deploy	Build and Push Container	2026-02-11T18:07:44.2119495Z #5 extracting sha256:281b80c799ded5b9a390d2e8c59930db01ee395ab809dd34259897c660751f4e 1.6s done
+deploy	Build and Push Container	2026-02-11T18:07:44.4126152Z #5 sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2 219.15MB / 435.16MB 2.4s
+deploy	Build and Push Container	2026-02-11T18:07:44.8117733Z #5 sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2 263.19MB / 435.16MB 2.8s
+deploy	Build and Push Container	2026-02-11T18:07:45.1144749Z #5 sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2 290.46MB / 435.16MB 3.1s
+deploy	Build and Push Container	2026-02-11T18:07:45.4134066Z #5 sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2 316.67MB / 435.16MB 3.4s
+deploy	Build and Push Container	2026-02-11T18:07:45.7151026Z #5 sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 163.58MB / 1.53GB 3.7s
+deploy	Build and Push Container	2026-02-11T18:07:45.9122580Z #5 sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2 341.84MB / 435.16MB 3.9s
+deploy	Build and Push Container	2026-02-11T18:07:46.4127880Z #5 sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2 377.49MB / 435.16MB 4.4s
+deploy	Build and Push Container	2026-02-11T18:07:46.7120128Z #5 sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2 408.94MB / 435.16MB 4.7s
+deploy	Build and Push Container	2026-02-11T18:07:47.1123495Z #5 sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2 435.16MB / 435.16MB 5.1s
+deploy	Build and Push Container	2026-02-11T18:07:47.7121445Z #5 sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 245.37MB / 1.53GB 5.7s
+deploy	Build and Push Container	2026-02-11T18:07:48.0115066Z #5 sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2 435.16MB / 435.16MB 5.9s done
+deploy	Build and Push Container	2026-02-11T18:07:48.1118426Z #5 extracting sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2
+deploy	Build and Push Container	2026-02-11T18:07:48.9117050Z #5 sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 330.30MB / 1.53GB 6.9s
+deploy	Build and Push Container	2026-02-11T18:07:49.7742347Z #5 sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 412.09MB / 1.53GB 7.7s
+deploy	Build and Push Container	2026-02-11T18:07:50.4592342Z #5 sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 494.10MB / 1.53GB 8.4s
+deploy	Build and Push Container	2026-02-11T18:07:51.0964158Z #5 sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 571.47MB / 1.53GB 9.0s
+deploy	Build and Push Container	2026-02-11T18:07:51.7380581Z #5 sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 650.12MB / 1.53GB 9.7s
+deploy	Build and Push Container	2026-02-11T18:07:52.4907006Z #5 sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 729.94MB / 1.53GB 10.4s
+deploy	Build and Push Container	2026-02-11T18:07:53.1328269Z #5 extracting sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2 5.1s
+deploy	Build and Push Container	2026-02-11T18:07:53.2483889Z #5 sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 811.60MB / 1.53GB 11.2s
+deploy	Build and Push Container	2026-02-11T18:07:54.2096371Z #5 sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 890.24MB / 1.53GB 12.1s
+deploy	Build and Push Container	2026-02-11T18:07:54.9343484Z #5 sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 969.93MB / 1.53GB 12.9s
+deploy	Build and Push Container	2026-02-11T18:07:55.9954325Z #5 sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 1.05GB / 1.53GB 13.9s
+deploy	Build and Push Container	2026-02-11T18:07:56.9533495Z #5 sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 1.13GB / 1.53GB 14.9s
+deploy	Build and Push Container	2026-02-11T18:07:57.8115290Z #5 sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 1.21GB / 1.53GB 15.8s
+deploy	Build and Push Container	2026-02-11T18:07:58.3119682Z #5 extracting sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2 10.2s
+deploy	Build and Push Container	2026-02-11T18:07:58.9116132Z #5 sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 1.30GB / 1.53GB 16.9s
+deploy	Build and Push Container	2026-02-11T18:07:59.6115532Z #5 sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 1.39GB / 1.53GB 17.6s
+deploy	Build and Push Container	2026-02-11T18:08:00.3116784Z #5 sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 1.48GB / 1.53GB 18.3s
+deploy	Build and Push Container	2026-02-11T18:08:03.3116413Z #5 extracting sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2 15.2s
+deploy	Build and Push Container	2026-02-11T18:08:03.9761428Z #5 sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 1.53GB / 1.53GB 21.9s done
+deploy	Build and Push Container	2026-02-11T18:08:06.4532951Z #5 extracting sha256:4e05ed26faf957bf4cbec7d0b70bf7328f156dc488e3ffec9cbf576b01f23fb2 18.3s done
+deploy	Build and Push Container	2026-02-11T18:08:06.7948830Z #5 extracting sha256:3adf6c78c02ea816b9e6f0f76ba8ec4540b5ad52f6e25f4e8cd61d2aa86f715f
+deploy	Build and Push Container	2026-02-11T18:08:06.9655355Z #5 extracting sha256:3adf6c78c02ea816b9e6f0f76ba8ec4540b5ad52f6e25f4e8cd61d2aa86f715f done
+deploy	Build and Push Container	2026-02-11T18:08:06.9656705Z #5 extracting sha256:b05e0b4b5e342f753ac6a44ed12d58b400ef4e2636231e5719fd129cfbad9148 done
+deploy	Build and Push Container	2026-02-11T18:08:06.9657920Z #5 extracting sha256:96721510810e660833d7266fc77c7377676bbc3d5164fd5855d3e3b281262752 done
+deploy	Build and Push Container	2026-02-11T18:08:06.9659114Z #5 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 done
+deploy	Build and Push Container	2026-02-11T18:08:06.9660358Z #5 extracting sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 0.1s
+deploy	Build and Push Container	2026-02-11T18:08:11.9972600Z #5 extracting sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 5.1s
+deploy	Build and Push Container	2026-02-11T18:08:17.0673296Z #5 extracting sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 10.2s
+deploy	Build and Push Container	2026-02-11T18:08:22.0845701Z #5 extracting sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 15.2s
+deploy	Build and Push Container	2026-02-11T18:08:27.3908127Z #5 extracting sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 20.5s
+deploy	Build and Push Container	2026-02-11T18:08:32.6026977Z #5 extracting sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 25.7s
+deploy	Build and Push Container	2026-02-11T18:08:38.3243405Z #5 extracting sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 31.5s
+deploy	Build and Push Container	2026-02-11T18:08:43.9576597Z #5 extracting sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 37.1s
+deploy	Build and Push Container	2026-02-11T18:08:49.0322479Z #5 extracting sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 42.2s
+deploy	Build and Push Container	2026-02-11T18:08:54.0858864Z #5 extracting sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 47.2s
+deploy	Build and Push Container	2026-02-11T18:08:59.1641926Z #5 extracting sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 52.3s
+deploy	Build and Push Container	2026-02-11T18:09:04.1721896Z #5 extracting sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 57.3s
+deploy	Build and Push Container	2026-02-11T18:09:09.2619195Z #5 extracting sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 62.4s
+deploy	Build and Push Container	2026-02-11T18:09:15.3127016Z #5 extracting sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 68.5s
+deploy	Build and Push Container	2026-02-11T18:09:20.6057600Z #5 extracting sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 73.7s
+deploy	Build and Push Container	2026-02-11T18:09:26.6780651Z #5 extracting sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 79.8s
+deploy	Build and Push Container	2026-02-11T18:09:28.1199823Z #5 extracting sha256:76aaadbc79bc8963c2c803f343c495749079913dccfc75e90f02ca2872c3ef13 81.3s done
+deploy	Build and Push Container	2026-02-11T18:09:30.1131996Z #5 DONE 108.1s
+deploy	Build and Push Container	2026-02-11T18:09:30.2651937Z 
+deploy	Build and Push Container	2026-02-11T18:09:30.2654639Z #7 [ 2/11] ADD --chown=belenios . /home/belenios/
+deploy	Build and Push Container	2026-02-11T18:09:30.3636592Z #7 DONE 0.2s
+deploy	Build and Push Container	2026-02-11T18:09:30.5238678Z 
+deploy	Build and Push Container	2026-02-11T18:09:30.5240777Z #8 [ 3/11] WORKDIR /home/belenios
+deploy	Build and Push Container	2026-02-11T18:09:30.5241433Z #8 DONE 0.0s
+deploy	Build and Push Container	2026-02-11T18:09:30.5241702Z 
+deploy	Build and Push Container	2026-02-11T18:09:30.5242383Z #9 [ 4/11] RUN find . -type f -name "*.sh" -exec sed -i 's/\r$//' *** ;     && find . -type f -name "*.sh" -exec chmod +x *** ;
+deploy	Build and Push Container	2026-02-11T18:09:35.6255931Z #9 DONE 5.3s
+deploy	Build and Push Container	2026-02-11T18:09:35.7413865Z 
+deploy	Build and Push Container	2026-02-11T18:09:35.7417960Z #10 [ 5/11] RUN find po -type f -name "LINGUAS" -exec sed -i 's/\r$//' *** ;     && sed -i 's/\r$//' VERSION
+deploy	Build and Push Container	2026-02-11T18:09:35.7419030Z #10 DONE 0.1s
+deploy	Build and Push Container	2026-02-11T18:09:35.8677359Z 
+deploy	Build and Push Container	2026-02-11T18:09:35.8678301Z #11 [ 6/11] RUN sed -i 's/\$(MAKE) clean/@echo "Skipping make clean"/' Makefile
+deploy	Build and Push Container	2026-02-11T18:09:35.8679116Z #11 DONE 0.1s
+deploy	Build and Push Container	2026-02-11T18:09:36.0189703Z 
+deploy	Build and Push Container	2026-02-11T18:09:36.0190500Z #12 [ 7/11] RUN . /home/belenios/.belenios/env.sh     && make build-release-server
+deploy	Build and Push Container	2026-02-11T18:09:36.0286820Z #12 0.160 Skipping make clean
+deploy	Build and Push Container	2026-02-11T18:09:36.1798510Z #12 0.161 Building Belenios server 3.2~dev+20260211 in release mode...
+deploy	Build and Push Container	2026-02-11T18:09:36.1799248Z #12 0.161 BELENIOS_DEBUG= dune build --release
+deploy	Build and Push Container	2026-02-11T18:10:00.9651973Z #12 25.10 (cd _build/default && /home/belenios/.belenios/opam/5.4.0/bin/ocamlopt.opt -w -40 -g -I src/web/server/common/.belenios_server.objs/byte -I src/web/server/common/.belenios_server.objs/native -I /home/belenios/.belenios/opam/5.4.0/lib/atdgen-runtime -I /home/belenios/.belenios/opam/5.4.0/lib/base64 -I /home/belenios/.belenios/opam/5.4.0/lib/cohttp -I /home/belenios/.belenios/opam/5.4.0/lib/cohttp-lwt -I /home/belenios/.belenios/opam/5.4.0/lib/cohttp-lwt-unix -I /home/belenios/.belenios/opam/5.4.0/lib/cryptokit -I /home/belenios/.belenios/opam/5.4.0/lib/eliom/server -I /home/belenios/.belenios/opam/5.4.0/lib/gettext-camomile -I /home/belenios/.belenios/opam/5.4.0/lib/gettext/base -I /home/belenios/.belenios/opam/5.4.0/lib/gettext/extension -I /home/belenios/.belenios/opam/5.4.0/lib/hex -I /home/belenios/.belenios/opam/5.4.0/lib/lwt -I /home/belenios/.belenios/opam/5.4.0/lib/lwt/unix -I /home/belenios/.belenios/opam/5.4.0/lib/netclient -I /home/belenios/.belenios/opam/5.4.0/lib/netstring -I /home/belenios/.belenios/opam/5.4.0/lib/ocaml/unix -I /home/belenios/.belenios/opam/5.4.0/lib/ocsigenserver -I /home/belenios/.belenios/opam/5.4.0/lib/ocsigenserver/baselib -I /home/belenios/.belenios/opam/5.4.0/lib/ocsigenserver/cookies -I /home/belenios/.belenios/opam/5.4.0/lib/ocsigenserver/http -I /home/belenios/.belenios/opam/5.4.0/lib/ocsipersist -I /home/belenios/.belenios/opam/5.4.0/lib/ocsipersist-lib -I /home/belenios/.belenios/opam/5.4.0/lib/re -I /home/belenios/.belenios/opam/5.4.0/lib/tyxml/functor -I /home/belenios/.belenios/opam/5.4.0/lib/uri -I /home/belenios/.belenios/opam/5.4.0/lib/xml-light -I /home/belenios/.belenios/opam/5.4.0/lib/yojson -I src/lib/core/.belenios_core.objs/byte -I src/lib/core/.belenios_core.objs/native -I src/lib/question/.belenios_question.objs/byte -I src/lib/question/.belenios_question.objs/native -I src/lib/shell/.belenios.objs/byte -I src/lib/shell/.belenios.objs/native -I src/meta/cohttp/.belenios_cohttp.objs/byte -I src/meta/cohttp/.belenios_cohttp.objs/native -I src/platform/.belenios_platform.objs/byte -I src/platform/.belenios_platform.objs/native -I src/storage/api/.belenios_storage_api.objs/byte -I src/storage/api/.belenios_storage_api.objs/native -I src/web/api/.belenios_web_api.objs/byte -I src/web/api/.belenios_web_api.objs/native -I src/web/common/.belenios_ui.objs/byte -I src/web/common/.belenios_ui.objs/native -I src/web/server/core/.belenios_server_core.objs/byte -I src/web/server/core/.belenios_server_core.objs/native -I src/web/server/messages/.belenios_messages.objs/byte -I src/web/server/messages/.belenios_messages.objs/native -cmi-file src/web/server/common/.belenios_server.objs/byte/belenios_server__Send_message.cmi -no-alias-deps -open Belenios_server -o src/web/server/common/.belenios_server.objs/native/belenios_server__Send_message.cmx -c -impl src/web/server/common/send_message.ml)
+deploy	Build and Push Container	2026-02-11T18:10:00.9662833Z #12 25.10 File "src/web/server/common/send_message.ml", line 114, characters 18-41:
+deploy	Build and Push Container	2026-02-11T18:10:00.9663581Z #12 25.10 114 |       client#helo !Web_config.server_name;
+deploy	Build and Push Container	2026-02-11T18:10:00.9663984Z #12 25.10                         ^^^^^^^^^^^^^^^^^^^^^^^
+deploy	Build and Push Container	2026-02-11T18:10:00.9664467Z #12 25.10 Error: This expression has type string but an expression was expected of type
+deploy	Build and Push Container	2026-02-11T18:10:00.9664968Z #12 25.10          unit
+deploy	Build and Push Container	2026-02-11T18:10:01.5855344Z #12 25.72 make: *** [Makefile:28: build-release-server] Error 1
+deploy	Build and Push Container	2026-02-11T18:10:02.5849785Z #12 ERROR: process "/bin/sh -c . /home/belenios/.belenios/env.sh     && make build-release-server" did not complete successfully: exit code: 2
+deploy	Build and Push Container	2026-02-11T18:10:02.5960253Z ------
+deploy	Build and Push Container	2026-02-11T18:10:02.5961074Z  > [ 7/11] RUN . /home/belenios/.belenios/env.sh     && make build-release-server:
+deploy	Build and Push Container	2026-02-11T18:10:02.5961934Z 0.160 Skipping make clean
+deploy	Build and Push Container	2026-02-11T18:10:02.5962707Z 0.161 Building Belenios server 3.2~dev+20260211 in release mode...
+deploy	Build and Push Container	2026-02-11T18:10:02.5963608Z 0.161 BELENIOS_DEBUG= dune build --release
+deploy	Build and Push Container	2026-02-11T18:10:02.5980093Z 25.10 (cd _build/default && /home/belenios/.belenios/opam/5.4.0/bin/ocamlopt.opt -w -40 -g -I src/web/server/common/.belenios_server.objs/byte -I src/web/server/common/.belenios_server.objs/native -I /home/belenios/.belenios/opam/5.4.0/lib/atdgen-runtime -I /home/belenios/.belenios/opam/5.4.0/lib/base64 -I /home/belenios/.belenios/opam/5.4.0/lib/cohttp -I /home/belenios/.belenios/opam/5.4.0/lib/cohttp-lwt -I /home/belenios/.belenios/opam/5.4.0/lib/cohttp-lwt-unix -I /home/belenios/.belenios/opam/5.4.0/lib/cryptokit -I /home/belenios/.belenios/opam/5.4.0/lib/eliom/server -I /home/belenios/.belenios/opam/5.4.0/lib/gettext-camomile -I /home/belenios/.belenios/opam/5.4.0/lib/gettext/base -I /home/belenios/.belenios/opam/5.4.0/lib/gettext/extension -I /home/belenios/.belenios/opam/5.4.0/lib/hex -I /home/belenios/.belenios/opam/5.4.0/lib/lwt -I /home/belenios/.belenios/opam/5.4.0/lib/lwt/unix -I /home/belenios/.belenios/opam/5.4.0/lib/netclient -I /home/belenios/.belenios/opam/5.4.0/lib/netstring -I /home/belenios/.belenios/opam/5.4.0/lib/ocaml/unix -I /home/belenios/.belenios/opam/5.4.0/lib/ocsigenserver -I /home/belenios/.belenios/opam/5.4.0/lib/ocsigenserver/baselib -I /home/belenios/.belenios/opam/5.4.0/lib/ocsigenserver/cookies -I /home/belenios/.belenios/opam/5.4.0/lib/ocsigenserver/http -I /home/belenios/.belenios/opam/5.4.0/lib/ocsipersist -I /home/belenios/.belenios/opam/5.4.0/lib/ocsipersist-lib -I /home/belenios/.belenios/opam/5.4.0/lib/re -I /home/belenios/.belenios/opam/5.4.0/lib/tyxml/functor -I /home/belenios/.belenios/opam/5.4.0/lib/uri -I /home/belenios/.belenios/opam/5.4.0/lib/xml-light -I /home/belenios/.belenios/opam/5.4.0/lib/yojson -I src/lib/core/.belenios_core.objs/byte -I src/lib/core/.belenios_core.objs/native -I src/lib/question/.belenios_question.objs/byte -I src/lib/question/.belenios_question.objs/native -I src/lib/shell/.belenios.objs/byte -I src/lib/shell/.belenios.objs/native -I src/meta/cohttp/.belenios_cohttp.objs/byte -I src/meta/cohttp/.belenios_cohttp.objs/native -I src/platform/.belenios_platform.objs/byte -I src/platform/.belenios_platform.objs/native -I src/storage/api/.belenios_storage_api.objs/byte -I src/storage/api/.belenios_storage_api.objs/native -I src/web/api/.belenios_web_api.objs/byte -I src/web/api/.belenios_web_api.objs/native -I src/web/common/.belenios_ui.objs/byte -I src/web/common/.belenios_ui.objs/native -I src/web/server/core/.belenios_server_core.objs/byte -I src/web/server/core/.belenios_server_core.objs/native -I src/web/server/messages/.belenios_messages.objs/byte -I src/web/server/messages/.belenios_messages.objs/native -cmi-file src/web/server/common/.belenios_server.objs/byte/belenios_server__Send_message.cmi -no-alias-deps -open Belenios_server -o src/web/server/common/.belenios_server.objs/native/belenios_server__Send_message.cmx -c -impl src/web/server/common/send_message.ml)
+deploy	Build and Push Container	2026-02-11T18:10:02.5997884Z 25.10 File "src/web/server/common/send_message.ml", line 114, characters 18-41:
+deploy	Build and Push Container	2026-02-11T18:10:02.5998728Z 25.10 114 |       client#helo !Web_config.server_name;
+deploy	Build and Push Container	2026-02-11T18:10:02.5999345Z 25.10                         ^^^^^^^^^^^^^^^^^^^^^^^
+deploy	Build and Push Container	2026-02-11T18:10:02.6000117Z 25.10 Error: This expression has type string but an expression was expected of type
+deploy	Build and Push Container	2026-02-11T18:10:02.6000859Z 25.10          unit
+deploy	Build and Push Container	2026-02-11T18:10:02.6001424Z 25.72 make: *** [Makefile:28: build-release-server] Error 1
+deploy	Build and Push Container	2026-02-11T18:10:02.6002051Z ------
+deploy	Build and Push Container	2026-02-11T18:10:02.6002449Z Dockerfile:22
+deploy	Build and Push Container	2026-02-11T18:10:02.6002872Z --------------------
+deploy	Build and Push Container	2026-02-11T18:10:02.6003485Z   21 |     # Run build
+deploy	Build and Push Container	2026-02-11T18:10:02.6004006Z   22 | >>> RUN . /home/belenios/.belenios/env.sh \
+deploy	Build and Push Container	2026-02-11T18:10:02.6004589Z   23 | >>>     && make build-release-server
+deploy	Build and Push Container	2026-02-11T18:10:02.6005124Z   24 |     
+deploy	Build and Push Container	2026-02-11T18:10:02.6005528Z --------------------
+deploy	Build and Push Container	2026-02-11T18:10:02.6006617Z ERROR: failed to build: failed to solve: process "/bin/sh -c . /home/belenios/.belenios/env.sh     && make build-release-server" did not complete successfully: exit code: 2
+deploy	Build and Push Container	2026-02-11T18:10:02.6044004Z ##[error]Process completed with exit code 1.
+deploy	Post Google Auth	﻿2026-02-11T18:10:02.6173074Z Post job cleanup.
+deploy	Post Google Auth	2026-02-11T18:10:02.7000696Z Removed exported credentials at "/home/runner/work/belenios/belenios/gha-creds-6e5a94a504aa5af2.json".
+deploy	Post Checkout	﻿2026-02-11T18:10:02.7165585Z Post job cleanup.
+deploy	Post Checkout	2026-02-11T18:10:02.8036150Z [command]/usr/bin/git version
+deploy	Post Checkout	2026-02-11T18:10:02.8074437Z git version 2.52.0
+deploy	Post Checkout	2026-02-11T18:10:02.8117984Z Temporarily overriding HOME='/home/runner/work/_temp/d70954aa-ba81-42ac-ac9b-1c88eb1a66bb' before making global git config changes
+deploy	Post Checkout	2026-02-11T18:10:02.8119507Z Adding repository directory to the temporary git global config as a safe directory
+deploy	Post Checkout	2026-02-11T18:10:02.8123336Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/belenios/belenios
+deploy	Post Checkout	2026-02-11T18:10:02.8155874Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+deploy	Post Checkout	2026-02-11T18:10:02.8185884Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+deploy	Post Checkout	2026-02-11T18:10:02.8466338Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+deploy	Post Checkout	2026-02-11T18:10:02.8486348Z http.https://github.com/.extraheader
+deploy	Post Checkout	2026-02-11T18:10:02.8498162Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+deploy	Post Checkout	2026-02-11T18:10:02.8527155Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+deploy	Complete job	﻿2026-02-11T18:10:02.8860884Z Cleaning up orphan processes
