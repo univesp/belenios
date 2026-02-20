@@ -4,9 +4,10 @@
 Fluxo principal (`bootstrap`):
 1. Cria um rascunho de eleição.
 2. Cadastra eleitores.
-3. Gera senhas para os eleitores.
+3. Gera senhas para os eleitores (quando `--auth password`).
 4. Solicita geração de credenciais públicas no servidor.
 5. Aguarda o rascunho ficar pronto e valida a eleição.
+6. Opcionalmente abre a eleição.
 
 Também inclui subcomandos para listar eleições, consultar status e executar ações
 administrativas (abrir, fechar, arquivar e excluir).
@@ -113,7 +114,9 @@ def voter_list(count: int, domain: str) -> list[dict[str, str]]:
     return voters
 
 
-def wait_until_ready(api: BeleniosApi, uuid: str, timeout_s: int, interval_s: int) -> dict[str, Any]:
+def wait_until_ready(
+    api: BeleniosApi, uuid: str, timeout_s: int, interval_s: int
+) -> dict[str, Any]:
     deadline = time.time() + timeout_s
     while time.time() < deadline:
         status = api.get(f"elections/{uuid}/draft/status")
@@ -147,7 +150,11 @@ def bootstrap(args: argparse.Namespace) -> None:
     print("[ok] Geração de credenciais públicas solicitada")
 
     status = wait_until_ready(api, uuid, args.ready_timeout, args.poll_interval)
-    print(f"[ok] Draft pronto: credentials_ready={status.get('credentials_ready')}, trustees_ready={status.get('trustees_ready')}")
+    print(
+        "[ok] Draft pronto: "
+        f"credentials_ready={status.get('credentials_ready')}, "
+        f"trustees_ready={status.get('trustees_ready')}"
+    )
 
     api.post(f"elections/{uuid}/draft", "ValidateElection")
     print("[ok] Eleição validada")
@@ -186,7 +193,15 @@ def delete_election(args: argparse.Namespace) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Criar e gerenciar eleição de teste via API do Belenios"
+        description="Criar e gerenciar eleição de teste via API do Belenios",
+        epilog=(
+            "Exemplo rápido:\n"
+            "  python3 contrib/test_election_api.py --url http://localhost:8001/ "
+            "--token <TOKEN> bootstrap --admin-id 1 --voters 5 --open\n\n"
+            "Para um passo a passo completo (subir servidor, obter token e rodar o script), "
+            "veja: contrib/test_election_api.md"
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("--url", required=True, help="URL base, ex.: https://vote.exemplo.org/")
     parser.add_argument("--token", required=True, help="Token administrativo da API")
