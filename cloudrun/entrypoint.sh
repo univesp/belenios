@@ -5,8 +5,8 @@ set -e
 : ${PORT:=8080}
 
 # Paths
-export BELENIOS_VARDIR=/tmp/belenios/var
-export BELENIOS_RUNDIR=/tmp/belenios/run
+export BELENIOS_VARDIR=${BELENIOS_VARDIR:-/mnt/belenios-data/var}
+export BELENIOS_RUNDIR=${BELENIOS_RUNDIR:-/tmp/belenios/run}
 export BELENIOS_BINDIR=/usr/bin  # Assuming installed via opam or system
 export BELENIOS_SHAREDIR=/home/belenios/_run/usr/share/belenios-server # Based on demo build where it installs locally
 

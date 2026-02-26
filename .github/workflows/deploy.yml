@@ -43,11 +43,12 @@ jobs:
         docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.IMAGE_NAME }}:latest
 
     - name: Deploy to Cloud Run
-      uses: 'google-github-actions/deploy-cloudrun@v1'
+      uses: 'google-github-actions/deploy-cloudrun@v2'
       with:
         service: ${{ env.SERVICE_NAME }}
         image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
         region: ${{ env.REGION }}
+        flags: '--execution-environment=gen2 --add-volume=name=belenios-data,type=cloud-storage,bucket=belenios --add-volume-mount=volume=belenios-data,mount-path=/mnt/belenios-data'
         env_vars: |
           SMTP_RELAY_HOST=127.0.0.1
           SMTP_RELAY_PORT=12525
