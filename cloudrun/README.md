@@ -1,6 +1,6 @@
 # Deploying Belenios to Google Cloud Run (São Paulo)
 
-This guide details how to deploy your Belenios application to Google Cloud Run in the `southamerica-east1` (São Paulo) region, using a custom domain (`homolog.votacao.univesp.br`) with a Google-managed SSL certificate (automatic renewal).
+This guide details how to deploy your Belenios application to Google Cloud Run in the `us-east1` region, using a custom domain (`homolog.votacao.univesp.br`) with a Google-managed SSL certificate (automatic renewal).
 
 ## Prerequisites
 

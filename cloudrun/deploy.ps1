@@ -2,7 +2,7 @@ $ErrorActionPreference = "Stop"
 
 # Configuration
 $PROJECT_ID = gcloud config get-value project
-$REGION = "southamerica-east1"
+$REGION = "us-east1"
 $SERVICE_NAME = "belenios"
 $IMAGE_NAME = "gcr.io/$PROJECT_ID/$SERVICE_NAME"
 $DOMAIN = "homolog.votacao.univesp.br"

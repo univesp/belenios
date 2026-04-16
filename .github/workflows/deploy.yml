@@ -9,7 +9,7 @@ on:
 env:
   SERVICE_NAME: belenios
   IMAGE_NAME: belenios
-  REGION: southamerica-east1
+  REGION: us-east1
 
 jobs:
   deploy:
