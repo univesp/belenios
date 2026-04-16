@@ -1,6 +1,8 @@
-# Deploying Belenios to Google Cloud Run (São Paulo)
+# Deploying Belenios to Google Cloud Run (us-east1)
 
 This guide details how to deploy your Belenios application to Google Cloud Run in the `us-east1` region, using a custom domain (`homolog.votacao.univesp.br`) with a Google-managed SSL certificate (automatic renewal).
+
+> Note: the GitHub Actions workflow only redeploys the Cloud Run service. If you change regions, run `.\cloudrun\deploy.ps1` once so the regional serverless NEG and backend service used by the external load balancer are updated too.
 
 ## Prerequisites
 

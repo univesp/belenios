@@ -52,15 +52,42 @@ if (-not $negExists) {
         --cloud-run-service=$SERVICE_NAME
 }
 
-# 5. Create Backend Service
-Write-Host "Checking/Creating Backend Service..." -ForegroundColor Yellow
+# 5. Create/Sync Backend Service
+Write-Host "Checking/Syncing Backend Service..." -ForegroundColor Yellow
 $backendExists = gcloud compute backend-services list --filter="name=belenios-backend" --format="value(name)"
 if (-not $backendExists) {
     gcloud compute backend-services create belenios-backend --global
+}
+
+$backendGroups = gcloud compute backend-services describe belenios-backend --global --format="value(backends[].group)"
+$backendGroupList = @()
+if (-not [string]::IsNullOrWhiteSpace($backendGroups)) {
+    $backendGroupList = $backendGroups -split "\r?\n" | Where-Object { -not [string]::IsNullOrWhiteSpace($_) }
+}
+
+$targetGroupSuffix = "/regions/$REGION/networkEndpointGroups/belenios-neg"
+$targetAttached = $backendGroupList | Where-Object { $_ -like "*$targetGroupSuffix" }
+if (-not $targetAttached) {
+    Write-Host "Attaching belenios-neg in $REGION to belenios-backend..." -ForegroundColor Yellow
     gcloud compute backend-services add-backend belenios-backend `
         --global `
         --network-endpoint-group=belenios-neg `
         --network-endpoint-group-region=$REGION
+}
+
+$staleGroups = $backendGroupList | Where-Object {
+    $_ -like "*/networkEndpointGroups/belenios-neg" -and $_ -notlike "*$targetGroupSuffix"
+}
+foreach ($staleGroup in $staleGroups) {
+    if ($staleGroup -match "/regions/([^/]+)/networkEndpointGroups/([^/]+)$") {
+        $staleRegion = $Matches[1]
+        $staleNeg = $Matches[2]
+        Write-Host "Removing stale backend attachment: $staleNeg in $staleRegion" -ForegroundColor Yellow
+        gcloud compute backend-services remove-backend belenios-backend `
+            --global `
+            --network-endpoint-group=$staleNeg `
+            --network-endpoint-group-region=$staleRegion
+    }
 }
 
 # 6. Create Managed SSL Certificate
