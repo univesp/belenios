@@ -1,0 +1,69 @@
+name: Diagnose Homolog Infra
+
+on:
+  workflow_dispatch:
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Google Auth
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v2
+
+    - name: Diagnose Cloud Run and Load Balancer
+      shell: bash
+      run: |
+        set -euo pipefail
+
+        echo "PROJECT_ID=$(gcloud config get-value project)"
+        echo
+        echo "== Cloud Run services in us-east1 =="
+        gcloud run services list --platform=managed --region=us-east1 || true
+        echo
+        echo "== Cloud Run services in southamerica-east1 =="
+        gcloud run services list --platform=managed --region=southamerica-east1 || true
+        echo
+        echo "== belenios service in us-east1 =="
+        gcloud run services describe belenios --platform=managed --region=us-east1 \
+          --format="yaml(metadata.name,status.url,status.latestReadyRevisionName,status.conditions,spec.template.metadata.annotations,spec.template.spec.containers[0].image)" || true
+        echo
+        echo "== belenios service in southamerica-east1 =="
+        gcloud run services describe belenios --platform=managed --region=southamerica-east1 \
+          --format="yaml(metadata.name,status.url,status.latestReadyRevisionName,status.conditions,spec.template.metadata.annotations,spec.template.spec.containers[0].image)" || true
+        echo
+        echo "== Serverless NEGs =="
+        gcloud compute network-endpoint-groups list \
+          --filter="name=belenios-neg" \
+          --format="table(name,region,networkEndpointType,size)" || true
+        echo
+        echo "== Backend service belenios-backend =="
+        gcloud compute backend-services describe belenios-backend --global \
+          --format="yaml(name,backends,protocol,loadBalancingScheme)" || true
+        echo
+        echo "== URL map belenios-url-map =="
+        gcloud compute url-maps describe belenios-url-map --global \
+          --format="yaml(name,defaultService,hostRules,pathMatchers)" || true
+        echo
+        echo "== HTTPS proxy =="
+        gcloud compute target-https-proxies describe belenios-https-proxy \
+          --format="yaml(name,urlMap,sslCertificates)" || true
+        echo
+        echo "== Global forwarding rules =="
+        gcloud compute forwarding-rules list --global \
+          --format="table(name,IPAddress,IPProtocol,portRange,target)" || true
+        echo
+        echo "== SSL certificate =="
+        gcloud compute ssl-certificates describe belenios-cert --global \
+          --format="yaml(name,managed.status,managed.domainStatus,subjectAlternativeNames)" || true
