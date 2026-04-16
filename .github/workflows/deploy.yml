@@ -5,16 +5,6 @@ on:
     branches:
       - master
   workflow_dispatch:
-    inputs:
-      mode:
-        description: "Choose what to run"
-        required: true
-        type: choice
-        default: deploy
-        options:
-          - deploy
-          - diagnose
-          - reconcile
 
 env:
   SERVICE_NAME: belenios
@@ -23,7 +13,7 @@ env:
 
 jobs:
   deploy:
-    if: github.event_name == 'push' || inputs.mode == 'deploy'
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     permissions:
       contents: "read"
@@ -67,7 +57,7 @@ jobs:
           SSH_USER=lucas.teles
 
   diagnose:
-    if: github.event_name == 'workflow_dispatch' && inputs.mode == 'diagnose'
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     permissions:
       contents: "read"
@@ -130,82 +120,3 @@ jobs:
         echo "== SSL certificate =="
         gcloud compute ssl-certificates describe belenios-cert --global \
           --format="yaml(name,managed.status,managed.domainStatus,subjectAlternativeNames)" || true
-
-  reconcile:
-    if: github.event_name == 'workflow_dispatch' && inputs.mode == 'reconcile'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: "read"
-      id-token: "write"
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-
-    - name: Google Auth
-      uses: 'google-github-actions/auth@v1'
-      with:
-        credentials_json: '${{ secrets.GCP_SA_KEY }}'
-
-    - name: Set up Cloud SDK
-      uses: 'google-github-actions/setup-gcloud@v1'
-
-    - name: Reconcile regional backend attachments
-      shell: bash
-      run: |
-        set -euo pipefail
-
-        PROJECT_ID="$(gcloud config get-value project)"
-        echo "PROJECT_ID=${PROJECT_ID}"
-
-        gcloud run services describe "${SERVICE_NAME}" \
-          --platform=managed \
-          --region="${REGION}" \
-          --format="value(status.url)"
-
-        if ! gcloud compute network-endpoint-groups describe belenios-neg --region="${REGION}" >/dev/null 2>&1; then
-          gcloud compute network-endpoint-groups create belenios-neg \
-            --region="${REGION}" \
-            --network-endpoint-type=serverless \
-            --cloud-run-service="${SERVICE_NAME}"
-        fi
-
-        if ! gcloud compute backend-services describe belenios-backend --global >/dev/null 2>&1; then
-          gcloud compute backend-services create belenios-backend --global
-        fi
-
-        CURRENT_GROUPS="$(gcloud compute backend-services describe belenios-backend --global --format='value(backends[].group)' || true)"
-        TARGET_SUFFIX="/regions/${REGION}/networkEndpointGroups/belenios-neg"
-
-        if ! printf '%s\n' "${CURRENT_GROUPS}" | grep -Fq "${TARGET_SUFFIX}"; then
-          gcloud compute backend-services add-backend belenios-backend \
-            --global \
-            --network-endpoint-group=belenios-neg \
-            --network-endpoint-group-region="${REGION}"
-        fi
-
-        while IFS= read -r group; do
-          if [[ -z "${group}" ]]; then
-            continue
-          fi
-          if [[ "${group}" == *"/networkEndpointGroups/belenios-neg" && "${group}" != *"${TARGET_SUFFIX}" ]]; then
-            stale_region="$(sed -E 's#^.*/regions/([^/]+)/networkEndpointGroups/[^/]+$#\1#' <<<"${group}")"
-            gcloud compute backend-services remove-backend belenios-backend \
-              --global \
-              --network-endpoint-group=belenios-neg \
-              --network-endpoint-group-region="${stale_region}"
-          fi
-        done <<<"${CURRENT_GROUPS}"
-
-        gcloud compute url-maps set-default-service belenios-url-map \
-          --default-service=belenios-backend \
-          --global
-
-        gcloud compute target-https-proxies update belenios-https-proxy \
-          --url-map=belenios-url-map \
-          --ssl-certificates=belenios-cert
-
-        echo
-        echo "== Backend service after reconcile =="
-        gcloud compute backend-services describe belenios-backend --global \
-          --format="yaml(name,backends)"
